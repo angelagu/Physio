@@ -1,41 +1,8 @@
-/**************************************************************************************************
-  Filename:       ViewPagerActivity.java
-  Revised:        $Date: 2013-09-05 05:55:20 +0200 (to, 05 sep 2013) $
-  Revision:       $Revision: 27614 $
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: braces fieldsfirst space lnc 
 
-  Copyright 2013 Texas Instruments Incorporated. All rights reserved.
- 
-  IMPORTANT: Your use of this Software is limited to those specific rights
-  granted under the terms of a software license agreement between the user
-  who downloaded the software, his/her employer (which must be your employer)
-  and Texas Instruments Incorporated (the "License").  You may not use this
-  Software unless you agree to abide by the terms of the License. 
-  The License limits your use, and you acknowledge, that the Software may not be 
-  modified, copied or distributed unless used solely and exclusively in conjunction 
-  with a Texas Instruments Bluetooth device. Other than for the foregoing purpose, 
-  you may not use, reproduce, copy, prepare derivative works of, modify, distribute, 
-  perform, display or sell this Software and/or its documentation for any purpose.
- 
-  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
-  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
-  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
-  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
-  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
-  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
-  INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
-  OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
-  OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
-  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
- 
-  Should you have any questions regarding your right to use this Software,
-  contact Texas Instruments Incorporated at www.TI.com
-
- **************************************************************************************************/
 package ti.android.ble.sensortag;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Dialog;
@@ -49,144 +16,188 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ViewPagerActivity extends FragmentActivity {
-  // Constants
-  private static final String TAG = "ViewPagerActivity";
+// Referenced classes of package ti.android.ble.sensortag:
+//            AboutDialog
 
-  // GUI
-  protected static ViewPagerActivity mThis = null;
-  protected SectionsPagerAdapter mSectionsPagerAdapter;
-  private ViewPager mViewPager;
-  protected int mResourceFragmentPager;
-  protected int mResourceIdPager;
+public class ViewPagerActivity extends FragmentActivity
+{
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter
+    {
 
-  private int mCurrentTab = 0;
+        private List mFragmentList;
+        private List mTitles;
+        final ViewPagerActivity this$0;
 
-  protected ViewPagerActivity() {
-    Log.d(TAG, "construct");
-    mThis = this;
-  }
+        public void addSection(Fragment fragment, String s)
+        {
+            ActionBar actionbar = getActionBar();
+            mFragmentList.add(fragment);
+            mTitles.add(s);
+            actionbar.addTab(actionbar.newTab().setText(s).setTabListener(tabListener));
+            notifyDataSetChanged();
+            Log.d("ViewPagerActivity", (new StringBuilder()).append("Tab: ").append(s).toString());
+        }
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    Log.d(TAG, "onCreate");
-    super.onCreate(savedInstanceState);
-    setContentView(mResourceFragmentPager);
+        public int getCount()
+        {
+            return mTitles.size();
+        }
 
-    // Set up the action bar
-    final ActionBar actionBar = getActionBar();
-    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-    ImageView view = (ImageView) findViewById(android.R.id.home);
-    view.setPadding(10, 0, 20, 10);
+        public Fragment getItem(int i)
+        {
+            return (Fragment)mFragmentList.get(i);
+        }
 
-    // Set up the ViewPager with the sections adapter.
-    mViewPager = (ViewPager) findViewById(mResourceIdPager);
-    mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-      @Override
-      public void onPageSelected(int n) {
-        Log.d(TAG, "onPageSelected: " + n);
-        actionBar.setSelectedNavigationItem(n);
-      }
-    });
-    // Create the adapter that will return a fragment for each section
-    mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        public CharSequence getPageTitle(int i)
+        {
+            if (i < getCount())
+            {
+                return (CharSequence)mTitles.get(i);
+            } else
+            {
+                return null;
+            }
+        }
 
-    // Set up the ViewPager with the sections adapter.
-    mViewPager.setAdapter(mSectionsPagerAdapter);
-  }
-
-  @Override
-  public void onDestroy() {
-    Log.d(TAG, "onDestroy");
-    mSectionsPagerAdapter = null;
-    super.onDestroy();
-  }
-
-  @Override
-  public void onBackPressed() {
-    if (mCurrentTab != 0)
-      getActionBar().setSelectedNavigationItem(0);
-    else
-      super.onBackPressed();
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    Log.d(TAG, "onOptionsItemSelected");
-    // Handle presses on the action bar items
-    switch (item.getItemId()) {
-    // Respond to the action bar's Up/Home button
-    case android.R.id.home:
-      onBackPressed();
-      return true;
-    default:
-      return super.onOptionsItemSelected(item);
-    }
-  }
-
-  protected void openAboutDialog() {
-    final Dialog dialog = new AboutDialog(this);
-    dialog.show();
-  }
-
-  public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
-    private List<Fragment> mFragmentList;
-    private List<String> mTitles;
-
-    public SectionsPagerAdapter(FragmentManager fm) {
-      super(fm);
-      mFragmentList = new ArrayList<Fragment>();
-      mTitles = new ArrayList<String>();
+        public SectionsPagerAdapter(FragmentManager fragmentmanager)
+        {
+            this$0 = ViewPagerActivity.this;
+            super(fragmentmanager);
+            mFragmentList = new ArrayList();
+            mTitles = new ArrayList();
+        }
     }
 
-    public void addSection(Fragment fragment, String title) {
-      final ActionBar actionBar = getActionBar();
-      mFragmentList.add(fragment);
-      mTitles.add(title);
-      actionBar.addTab(actionBar.newTab().setText(title).setTabListener(tabListener));
-      notifyDataSetChanged();
-      Log.d(TAG, "Tab: " + title);
+
+    private static final String TAG = "ViewPagerActivity";
+    protected static ViewPagerActivity mThis = null;
+    private int mCurrentTab;
+    protected int mResourceFragmentPager;
+    protected int mResourceIdPager;
+    protected SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
+    android.app.ActionBar.TabListener tabListener;
+
+    protected ViewPagerActivity()
+    {
+        mCurrentTab = 0;
+        tabListener = new android.app.ActionBar.TabListener() {
+
+            final ViewPagerActivity this$0;
+
+            public void onTabReselected(android.app.ActionBar.Tab tab, FragmentTransaction fragmenttransaction)
+            {
+                int i = tab.getPosition();
+                Log.d("ViewPagerActivity", (new StringBuilder()).append("onTabReselected: ").append(i).toString());
+            }
+
+            public void onTabSelected(android.app.ActionBar.Tab tab, FragmentTransaction fragmenttransaction)
+            {
+                int i = tab.getPosition();
+                Log.d("ViewPagerActivity", (new StringBuilder()).append("onTabSelected: ").append(i).toString());
+                mCurrentTab = i;
+                mViewPager.setCurrentItem(i);
+            }
+
+            public void onTabUnselected(android.app.ActionBar.Tab tab, FragmentTransaction fragmenttransaction)
+            {
+                int i = tab.getPosition();
+                Log.d("ViewPagerActivity", (new StringBuilder()).append("onTabUnselected: ").append(i).toString());
+            }
+
+            
+            {
+                this$0 = ViewPagerActivity.this;
+                super();
+            }
+        };
+        Log.d("ViewPagerActivity", "construct");
+        mThis = this;
     }
 
-    @Override
-    public Fragment getItem(int position) {
-      return mFragmentList.get(position);
+    public void onBackPressed()
+    {
+        if (mCurrentTab != 0)
+        {
+            getActionBar().setSelectedNavigationItem(0);
+            return;
+        } else
+        {
+            super.onBackPressed();
+            return;
+        }
     }
 
-    @Override
-    public int getCount() {
-      return mTitles.size();
+    protected void onCreate(Bundle bundle)
+    {
+        Log.d("ViewPagerActivity", "onCreate");
+        super.onCreate(bundle);
+        setContentView(mResourceFragmentPager);
+        final ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(2);
+        ((ImageView)findViewById(0x102002c)).setPadding(10, 0, 20, 10);
+        mViewPager = (ViewPager)findViewById(mResourceIdPager);
+        mViewPager.setOnPageChangeListener(new android.support.v4.view.ViewPager.SimpleOnPageChangeListener() {
+
+            final ViewPagerActivity this$0;
+            final ActionBar val$actionBar;
+
+            public void onPageSelected(int i)
+            {
+                Log.d("ViewPagerActivity", (new StringBuilder()).append("onPageSelected: ").append(i).toString());
+                actionBar.setSelectedNavigationItem(i);
+            }
+
+            
+            {
+                this$0 = ViewPagerActivity.this;
+                actionBar = actionbar;
+                super();
+            }
+        });
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-      if (position < getCount()) {
-        return mTitles.get(position);
-      } else {
-        return null;
-      }
-    }
-  }
-
-  // Create a tab listener that is called when the user changes tabs.
-  ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-      int n = tab.getPosition();
-      Log.d(TAG, "onTabSelected: " + n);
-      mCurrentTab = n;
-      mViewPager.setCurrentItem(n);
+    public void onDestroy()
+    {
+        Log.d("ViewPagerActivity", "onDestroy");
+        mSectionsPagerAdapter = null;
+        super.onDestroy();
     }
 
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-      int n = tab.getPosition();
-      Log.d(TAG, "onTabUnselected: " + n);
+    public boolean onOptionsItemSelected(MenuItem menuitem)
+    {
+        Log.d("ViewPagerActivity", "onOptionsItemSelected");
+        switch (menuitem.getItemId())
+        {
+        default:
+            return super.onOptionsItemSelected(menuitem);
+
+        case 16908332: 
+            onBackPressed();
+            break;
+        }
+        return true;
     }
 
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-      int n = tab.getPosition();
-      Log.d(TAG, "onTabReselected: " + n);
+    protected void openAboutDialog()
+    {
+        (new AboutDialog(this)).show();
     }
-  };
+
+
+
+/*
+    static int access$002(ViewPagerActivity viewpageractivity, int i)
+    {
+        viewpageractivity.mCurrentTab = i;
+        return i;
+    }
+
+*/
+
 }

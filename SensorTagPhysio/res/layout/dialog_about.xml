@@ -1,49 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fadingEdge="horizontal|vertical"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:padding="5dp"
-        android:textAlignment="center"
-        android:textColor="#c00"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:padding="3dp"
-        android:textAlignment="center"
-        android:textSize="16sp" />
-
-    <WebView
-        android:id="@+id/content"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp" />
-
-    <TextView
-        android:id="@+id/footer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:textSize="16sp" />
-
-    <Button
-        android:id="@+id/buttonOK"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:text="@android:string/ok" />
-
+<LinearLayout android:orientation="vertical" android:fadingEdge="horizontal|vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="24.0sp" android:textColor="#ffcc0000" android:gravity="center_horizontal" android:id="@id/title" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textAlignment="4" />
+    <TextView android:textSize="16.0sp" android:gravity="center_horizontal" android:id="@id/header" android:padding="3.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textAlignment="4" />
+    <WebView android:id="@id/content" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="5.0dip" />
+    <TextView android:textSize="16.0sp" android:gravity="center_horizontal" android:id="@id/footer" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textAlignment="4" />
+    <Button android:id="@id/buttonOK" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="0.0dip" android:text="@*android:string/ok" />
 </LinearLayout>

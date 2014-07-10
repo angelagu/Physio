@@ -1,240 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <TableLayout
-        android:id="@+id/services_browser_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:shrinkColumns="*"
-        android:stretchColumns="*" >
-
-        <TableRow style="@style/ServiceHeaderRow" >
-
-            <TextView
-                style="@style/ServiceHeaderItem"
-                android:text="@string/keys" />
+<ScrollView android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TableLayout android:id="@id/services_browser_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:stretchColumns="*" android:shrinkColumns="*">
+        <TableRow style="@style/ServiceHeaderRow">
+            <TextView android:text="@string/keys" style="@style/ServiceHeaderItem" />
         </TableRow>
-
-        <TableRow
-            android:id="@+id/keyPanel"
-            style="@style/ServiceRow" >
-
+        <TableRow android:id="@id/keyPanel" style="@style/ServiceRow">
             <TextView android:drawableLeft="@drawable/sensortag_simplekeys" />
-
-            <ImageView
-                android:id="@+id/buttons"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:contentDescription="@string/image"
-                android:src="@drawable/buttonsoffoff" />
-
+            <ImageView android:id="@id/buttons" android:layout_height="wrap_content" android:src="@drawable/buttonsoffoff" android:layout_span="2" android:contentDescription="@string/image" />
             <TextView android:layout_span="1" />
         </TableRow>
-
-        <TableRow style="@style/ServiceHeaderRow" >
-
-            <TextView
-                style="@style/ServiceHeaderItem"
-                android:text="@string/acc" />
+        <TableRow style="@style/ServiceHeaderRow">
+            <TextView android:text="@string/acc" style="@style/ServiceHeaderItem" />
         </TableRow>
-
-        <TableRow
-            android:id="@+id/accPanel"
-            style="@style/ServiceRow" >
-
+        <TableRow android:id="@id/accPanel" style="@style/ServiceRow">
             <TextView android:drawableLeft="@drawable/accelerometer" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/xyz3" />
-
-            <TextView
-                android:id="@+id/accelerometerTxt"
-                style="@style/ServiceItemValue"
-                android:text="@string/empty3" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/unitG3" />
+            <TextView android:text="@string/xyz3" style="@style/ServiceItem" />
+            <TextView android:id="@id/accelerometerTxt" android:text="@string/empty3" style="@style/ServiceItemValue" />
+            <TextView android:text="@string/unitG3" style="@style/ServiceItem" />
         </TableRow>
-
-        <TableRow style="@style/ServiceHeaderRow" >
-
-            <TextView
-                style="@style/ServiceHeaderItem"
-                android:text="@string/mag" />
+        <TableRow style="@style/ServiceHeaderRow">
+            <TextView android:text="@string/mag" style="@style/ServiceHeaderItem" />
         </TableRow>
-
-        <TableRow
-            android:id="@+id/magPanel"
-            style="@style/ServiceRow" >
-
+        <TableRow android:id="@id/magPanel" style="@style/ServiceRow">
             <TextView android:drawableLeft="@drawable/sensortag_magnetometer" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/xyz3" />
-
-            <TextView
-                android:id="@+id/magnetometerTxt"
-                style="@style/ServiceItemValue"
-                android:text="@string/empty3" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/unitT3" />
+            <TextView android:text="@string/xyz3" style="@style/ServiceItem" />
+            <TextView android:id="@id/magnetometerTxt" android:text="@string/empty3" style="@style/ServiceItemValue" />
+            <TextView android:text="@string/unitT3" style="@style/ServiceItem" />
         </TableRow>
-
-        <TableRow style="@style/ServiceHeaderRow" >
-
-            <TextView
-                style="@style/ServiceHeaderItem"
-                android:text="@string/gyro" />
+        <TableRow style="@style/ServiceHeaderRow">
+            <TextView android:text="@string/gyro" style="@style/ServiceHeaderItem" />
         </TableRow>
-
-        <TableRow
-            android:id="@+id/gyrPanel"
-            style="@style/ServiceRow" >
-
+        <TableRow android:id="@id/gyrPanel" style="@style/ServiceRow">
             <TextView android:drawableLeft="@drawable/gyroscope" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/xyz3" />
-
-            <TextView
-                android:id="@+id/gyroscopeTxt"
-                style="@style/ServiceItemValue"
-                android:text="@string/empty3" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/unitDegSec3" />
+            <TextView android:text="@string/xyz3" style="@style/ServiceItem" />
+            <TextView android:id="@id/gyroscopeTxt" android:text="@string/empty3" style="@style/ServiceItemValue" />
+            <TextView android:text="@string/unitDegSec3" style="@style/ServiceItem" />
         </TableRow>
-
-        <TableRow style="@style/ServiceHeaderRow" >
-
-            <TextView
-                style="@style/ServiceHeaderItem"
-                android:text="@string/tObj" />
+        <TableRow style="@style/ServiceHeaderRow">
+            <TextView android:text="@string/tObj" style="@style/ServiceHeaderItem" />
         </TableRow>
-
-        <TableRow
-            android:id="@+id/objPanel"
-            style="@style/ServiceRow" >
-
+        <TableRow android:id="@id/objPanel" style="@style/ServiceRow">
             <TextView android:drawableLeft="@drawable/irtemperature" />
-
             <TextView style="@style/ServiceItem" />
-
-            <TextView
-                android:id="@+id/objTemperatureText"
-                style="@style/ServiceItemValue"
-                android:text="@string/empty1" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/unitDeg" />
+            <TextView android:id="@id/objTemperatureText" android:text="@string/empty1" style="@style/ServiceItemValue" />
+            <TextView android:text="@string/unitDeg" style="@style/ServiceItem" />
         </TableRow>
-
-        <TableRow style="@style/ServiceHeaderRow" >
-
-            <TextView
-                style="@style/ServiceHeaderItem"
-                android:text="@string/tAmb" />
+        <TableRow style="@style/ServiceHeaderRow">
+            <TextView android:text="@string/tAmb" style="@style/ServiceHeaderItem" />
         </TableRow>
-
-        <TableRow
-            android:id="@+id/ambPanel"
-            style="@style/ServiceRow" >
-
+        <TableRow android:id="@id/ambPanel" style="@style/ServiceRow">
             <TextView android:drawableLeft="@drawable/temperature" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/ambientTemperatureTxt"
-                style="@style/ServiceItemValue"
-                android:text="@string/empty1" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/unitDeg" />
+            <TextView android:text="" style="@style/ServiceItem" />
+            <TextView android:id="@id/ambientTemperatureTxt" android:text="@string/empty1" style="@style/ServiceItemValue" />
+            <TextView android:text="@string/unitDeg" style="@style/ServiceItem" />
         </TableRow>
-
-        <TableRow style="@style/ServiceHeaderRow" >
-
-            <TextView
-                style="@style/ServiceHeaderItem"
-                android:text="@string/hum" />
+        <TableRow style="@style/ServiceHeaderRow">
+            <TextView android:text="@string/hum" style="@style/ServiceHeaderItem" />
         </TableRow>
-
-        <TableRow
-            android:id="@+id/humPanel"
-            style="@style/ServiceRow" >
-
+        <TableRow android:id="@id/humPanel" style="@style/ServiceRow">
             <TextView android:drawableLeft="@drawable/humidity" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/humidityTxt"
-                style="@style/ServiceItemValue"
-                android:text="@string/empty1" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/unitRH" />
+            <TextView android:text="" style="@style/ServiceItem" />
+            <TextView android:id="@id/humidityTxt" android:text="@string/empty1" style="@style/ServiceItemValue" />
+            <TextView android:text="@string/unitRH" style="@style/ServiceItem" />
         </TableRow>
-
-        <TableRow style="@style/ServiceHeaderRow" >
-
-            <TextView
-                style="@style/ServiceHeaderItem"
-                android:text="@string/bar" />
+        <TableRow style="@style/ServiceHeaderRow">
+            <TextView android:text="@string/bar" style="@style/ServiceHeaderItem" />
         </TableRow>
-
-        <TableRow
-            android:id="@+id/barPanel"
-            style="@style/ServiceRow" >
-
+        <TableRow android:id="@id/barPanel" style="@style/ServiceRow">
             <TextView android:drawableLeft="@drawable/barometer" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/barometerTxt"
-                style="@style/ServiceItemValue"
-                android:text="@string/empty1" />
-
-            <TextView
-                style="@style/ServiceItem"
-                android:text="@string/unitPA_Meter" />
+            <TextView android:text="" style="@style/ServiceItem" />
+            <TextView android:id="@id/barometerTxt" android:text="@string/empty1" style="@style/ServiceItemValue" />
+            <TextView android:text="@string/unitPA_Meter" style="@style/ServiceItem" />
         </TableRow>
-        
-        <TableRow
-            android:id="@+id/statusPanel"
-            style="@style/ServiceRow" >
-
-            <TextView
-                android:id="@+id/status"
-                style="@style/statusStyle"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_span="4"
-                android:gravity="center"
-                android:textSize="12sp" />
+        <TableRow android:id="@id/statusPanel" style="@style/ServiceRow">
+            <TextView android:textSize="12.0sp" android:gravity="center" android:id="@id/status" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_span="4" style="@style/statusStyle" />
         </TableRow>
-        
     </TableLayout>
-
 </ScrollView>

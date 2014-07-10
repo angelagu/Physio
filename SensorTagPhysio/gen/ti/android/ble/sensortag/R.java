@@ -110,8 +110,6 @@ public final class R {
         public static final int about=0x7f050013;
         public static final int acc=0x7f050018;
         public static final int app_closing=0x7f05000b;
-        /**  Main activity 
-         */
         public static final int app_name=0x7f050000;
         public static final int bar=0x7f05001c;
         public static final int ble_not_supported=0x7f050008;
@@ -124,8 +122,6 @@ public final class R {
         public static final int cancel=0x7f05002a;
         public static final int control=0x7f050006;
         public static final int cur_image=0x7f050032;
-        /**  Device activity 
-         */
         public static final int dev_addr=0x7f050015;
         public static final int device=0x7f050003;
         public static final int disconnected=0x7f050005;
@@ -138,8 +134,6 @@ public final class R {
         public static final int hum=0x7f05001b;
         public static final int idle=0x7f050033;
         public static final int image=0x7f050016;
-        /**  Sensor names
-         */
         public static final int keys=0x7f050017;
         public static final int load_image_a=0x7f05002c;
         public static final int load_image_b=0x7f05002d;
@@ -149,8 +143,6 @@ public final class R {
         public static final int no_image=0x7f05002f;
         public static final int no_image_sel=0x7f050030;
         public static final int nodevice=0x7f05000c;
-        /**  Options menu 
-         */
         public static final int prefs=0x7f05000e;
         public static final int prog_ogoing=0x7f05002b;
         public static final int scan_advice=0x7f05000d;
@@ -160,8 +152,6 @@ public final class R {
         public static final int tObj=0x7f05001e;
         public static final int tie2e=0x7f050012;
         public static final int title_device_list=0x7f050002;
-        /**  FWUpdate activity 
-         */
         public static final int title_oad=0x7f050028;
         public static final int unitDeg=0x7f050025;
         public static final int unitDegSec3=0x7f050021;
@@ -169,39 +159,10 @@ public final class R {
         public static final int unitPA_Meter=0x7f050027;
         public static final int unitRH=0x7f050026;
         public static final int unitT3=0x7f050023;
-        /**  Sensor misc. 
-         */
         public static final int xyz3=0x7f05001f;
     }
     public static final class style {
-        /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
-
-
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
-         */
         public static final int AppBaseTheme=0x7f070000;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static final int AppTheme=0x7f070001;
         public static final int ServiceHeaderItem=0x7f070017;
         public static final int ServiceHeaderRow=0x7f070016;
