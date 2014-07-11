@@ -1,8 +1,43 @@
-// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://www.geocities.com/kpdus/jad.html
-// Decompiler options: braces fieldsfirst space lnc 
+/**************************************************************************************************
+  Filename:       PreferencesListener.java
+  Revised:        $Date: 2013-09-03 16:44:05 +0200 (ti, 03 sep 2013) $
+  Revision:       $Revision: 27592 $
 
+  Copyright 2013 Texas Instruments Incorporated. All rights reserved.
+ 
+  IMPORTANT: Your use of this Software is limited to those specific rights
+  granted under the terms of a software license agreement between the user
+  who downloaded the software, his/her employer (which must be your employer)
+  and Texas Instruments Incorporated (the "License").  You may not use this
+  Software unless you agree to abide by the terms of the License. 
+  The License limits your use, and you acknowledge, that the Software may not be 
+  modified, copied or distributed unless used solely and exclusively in conjunction 
+  with a Texas Instruments Bluetooth device. Other than for the foregoing purpose, 
+  you may not use, reproduce, copy, prepare derivative works of, modify, distribute, 
+  perform, display or sell this Software and/or its documentation for any purpose.
+ 
+  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+  PROVIDED �AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+  INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+  OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+  OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+ 
+  Should you have any questions regarding your right to use this Software,
+  contact Texas Instruments Incorporated at www.TI.com
+
+ **************************************************************************************************/
 package ti.android.ble.sensortag;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,113 +45,102 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceFragment;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
-// Referenced classes of package ti.android.ble.sensortag:
-//            Sensor
+/**
+ * This class provides the link between gui and ble. When a preference is changed this class tells LeStateMachine to turn on/off a sensor or change the polling
+ * time.
+ * 
+ * We could have had this responsibility in leStateMachine, but it is big enough already.
+ * */
+public class PreferencesListener implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-public class PreferencesListener
-    implements android.content.SharedPreferences.OnSharedPreferenceChangeListener
-{
+  private static final int MAX_NOTIFICATIONS = 4; // Limit on simultaneous notification in Android 4.3
+  private SharedPreferences sharedPreferences;
+  private PreferenceFragment preferenceFragment;
+  private Context context;
 
-    private static final int MAX_NOTIFICATIONS = 4;
-    private Context context;
-    private PreferenceFragment preferenceFragment;
-    private SharedPreferences sharedPreferences;
+  public PreferencesListener(Context context, SharedPreferences sharedPreferences, PreferenceFragment pf) {
+    this.context = context;
+    this.sharedPreferences = sharedPreferences;
+    this.preferenceFragment = pf;
+  }
 
-    public PreferencesListener(Context context1, SharedPreferences sharedpreferences, PreferenceFragment preferencefragment)
-    {
-        context = context1;
-        sharedPreferences = sharedpreferences;
-        preferenceFragment = preferencefragment;
+  public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    Sensor sensor = getSensorFromPrefKey(key);
+
+    boolean noCheckboxWithThatKey = sensor == null;
+    if (noCheckboxWithThatKey)
+      return;
+
+    boolean turnedOn = sharedPreferences.getBoolean(key, true);
+
+    if (turnedOn && enabledSensors().size() > MAX_NOTIFICATIONS) {
+    	// Undo 
+    	CheckBoxPreference cb = (CheckBoxPreference) preferenceFragment.findPreference(key);
+    	cb.setChecked(false);
+    	// Alert user
+			alertNotifyLimitaion();
     }
+  }
 
-    private void alertNotifyLimitaion()
-    {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        builder.setTitle("Notifications limit");
-        builder.setMessage("Due to limitations in Android 4.3 BLE you may use a maximum of 4 notifications simultaneously.\n");
-        builder.setIcon(0x7f020002);
-        builder.setNeutralButton(0x104000a, new android.content.DialogInterface.OnClickListener() {
+  private void alertNotifyLimitaion() {
+  	String msg = "Due to limitations in Android 4.3 BLE " + "you may use a maximum of " + MAX_NOTIFICATIONS
+  			+ " notifications simultaneously.\n";
+  	
+  	AlertDialog.Builder ab = new AlertDialog.Builder(context);
 
-            final PreferencesListener this$0;
+  	ab.setTitle("Notifications limit");
+  	ab.setMessage(msg);
+  	ab.setIcon(R.drawable.bluetooth);
+  	ab.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+  		public void onClick(DialogInterface dialog, int which) {
+  		}
+  	});
 
-            public void onClick(DialogInterface dialoginterface, int i)
-            {
-            }
+  	// Showing Alert Message
+  	AlertDialog alertDialog = ab.create();
+  	alertDialog.show();
+  }
 
-            
-            {
-                this$0 = PreferencesListener.this;
-                super();
-            }
-        });
-        builder.create().show();
+  /**
+   * String is in the format
+   * 
+   * pref_magnetometer_on
+   * 
+   * @return Sensor corresponding to checkbox key, or null if there is no corresponding sensor.
+   * */
+  private Sensor getSensorFromPrefKey(String key) {
+    try {
+      int start = "pref_".length();
+      int end = key.length() - "_on".length();
+      String enumName = key.substring(start, end).toUpperCase(Locale.ENGLISH);
+
+      return Sensor.valueOf(enumName);
+    } catch (IndexOutOfBoundsException e) {
+      // thrown by substring
+    } catch (IllegalArgumentException e) {
+      // thrown by valueOf
+    } catch (NullPointerException e) {
+      // thrown by valueOf
     }
+    return null; // If exception was thrown while parsing. DON'T replace with catch'em all exception handling.
+  }
 
-    private List enabledSensors()
-    {
-        ArrayList arraylist = new ArrayList();
-        Sensor asensor[] = Sensor.values();
-        int i = asensor.length;
-        for (int j = 0; j < i; j++)
-        {
-            Sensor sensor = asensor[j];
-            if (isEnabledByPrefs(sensor))
-            {
-                arraylist.add(sensor);
-            }
-        }
+  private List<Sensor> enabledSensors() {
+    List<Sensor> sensors = new ArrayList<Sensor>();
+    for (Sensor sensor : Sensor.values())
+      if (isEnabledByPrefs(sensor))
+        sensors.add(sensor);
 
-        return arraylist;
+    return sensors;
+  }
+
+  private boolean isEnabledByPrefs(final Sensor sensor) {
+    String preferenceKeyString = "pref_" + sensor.name().toLowerCase(Locale.ENGLISH) + "_on";
+
+    if (!sharedPreferences.contains(preferenceKeyString)) {
+      throw new RuntimeException("Programmer error, could not find preference with key " + preferenceKeyString);
     }
-
-    private Sensor getSensorFromPrefKey(String s)
-    {
-        Sensor sensor = Sensor.valueOf(s.substring("pref_".length(), s.length() - "_on".length()).toUpperCase(Locale.ENGLISH));
-        return sensor;
-        NullPointerException nullpointerexception;
-        nullpointerexception;
-_L2:
-        return null;
-        IllegalArgumentException illegalargumentexception;
-        illegalargumentexception;
-        continue; /* Loop/switch isn't completed */
-        IndexOutOfBoundsException indexoutofboundsexception;
-        indexoutofboundsexception;
-        if (true) goto _L2; else goto _L1
-_L1:
-    }
-
-    private boolean isEnabledByPrefs(Sensor sensor)
-    {
-        String s = (new StringBuilder()).append("pref_").append(sensor.name().toLowerCase(Locale.ENGLISH)).append("_on").toString();
-        if (!sharedPreferences.contains(s))
-        {
-            throw new RuntimeException((new StringBuilder()).append("Programmer error, could not find preference with key ").append(s).toString());
-        } else
-        {
-            return sharedPreferences.getBoolean(s, true);
-        }
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences sharedpreferences, String s)
-    {
-        boolean flag;
-        if (getSensorFromPrefKey(s) == null)
-        {
-            flag = true;
-        } else
-        {
-            flag = false;
-        }
-        while (flag || !sharedpreferences.getBoolean(s, true) || enabledSensors().size() <= 4) 
-        {
-            return;
-        }
-        ((CheckBoxPreference)preferenceFragment.findPreference(s)).setChecked(false);
-        alertNotifyLimitaion();
-    }
+    return sharedPreferences.getBoolean(preferenceKeyString, true);
+  }
 }

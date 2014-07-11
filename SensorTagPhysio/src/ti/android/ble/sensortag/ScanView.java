@@ -1,9 +1,44 @@
-// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://www.geocities.com/kpdus/jad.html
-// Decompiler options: braces fieldsfirst space lnc 
+/**************************************************************************************************
+  Filename:       ScanView.java
+  Revised:        $Date: 2013-08-30 12:02:37 +0200 (fr, 30 aug 2013) $
+  Revision:       $Revision: 27470 $
 
+  Copyright 2013 Texas Instruments Incorporated. All rights reserved.
+ 
+  IMPORTANT: Your use of this Software is limited to those specific rights
+  granted under the terms of a software license agreement between the user
+  who downloaded the software, his/her employer (which must be your employer)
+  and Texas Instruments Incorporated (the "License").  You may not use this
+  Software unless you agree to abide by the terms of the License. 
+  The License limits your use, and you acknowledge, that the Software may not be 
+  modified, copied or distributed unless used solely and exclusively in conjunction 
+  with a Texas Instruments Bluetooth device. Other than for the foregoing purpose, 
+  you may not use, reproduce, copy, prepare derivative works of, modify, distribute, 
+  perform, display or sell this Software and/or its documentation for any purpose.
+ 
+  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+  PROVIDED “AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+  INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+  OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+  OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+ 
+  Should you have any questions regarding your right to use this Software,
+  contact Texas Instruments Incorporated at www.TI.com
+
+ **************************************************************************************************/
 package ti.android.ble.sensortag;
 
+import java.util.List;
+
+import ti.android.ble.common.BleDeviceInfo;
+import ti.android.util.CustomTimer;
+import ti.android.util.CustomTimerCallback;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.Bundle;
@@ -13,336 +48,225 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import java.util.List;
-import ti.android.ble.common.BleDeviceInfo;
-import ti.android.util.CustomTimer;
-import ti.android.util.CustomTimerCallback;
 
-// Referenced classes of package ti.android.ble.sensortag:
-//            MainActivity
+public class ScanView extends Fragment {
+  private static final String TAG = "ScanView";
+  private final int SCAN_TIMEOUT = 10; // Seconds
+  private final int CONNECT_TIMEOUT = 10; // Seconds
+  private MainActivity mActivity = null;
 
-public class ScanView extends Fragment
-{
-    class DeviceListAdapter extends BaseAdapter
-    {
+  private DeviceListAdapter mDeviceAdapter = null;
+  private TextView mEmptyMsg;
+  private TextView mStatus;
+  private Button mBtnScan = null;
+  private ListView mDeviceListView = null;
+  private ProgressBar mProgressBar;
 
-        private List mDevices;
-        private LayoutInflater mInflater;
-        final ScanView this$0;
+  private CustomTimer mScanTimer = null;
+  private CustomTimer mConnectTimer = null;
+  @SuppressWarnings("unused")
+  private CustomTimer mStatusTimer;
+  private Context mContext;
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    Log.i(TAG, "onCreateView");
 
-        public int getCount()
-        {
-            return mDevices.size();
-        }
+    // The last two arguments ensure LayoutParams are inflated properly.
+    View view = inflater.inflate(R.layout.fragment_scan, container, false);
 
-        public Object getItem(int i)
-        {
-            return mDevices.get(i);
-        }
+    mActivity = (MainActivity) getActivity();
+    mContext = mActivity.getApplicationContext();
 
-        public long getItemId(int i)
-        {
-            return (long)i;
-        }
+    // Initialize widgets
+    mStatus = (TextView) view.findViewById(R.id.status);
+    mBtnScan = (Button) view.findViewById(R.id.btn_scan);
+    mDeviceListView = (ListView) view.findViewById(R.id.device_list);
+    mDeviceListView.setClickable(true);
+    mDeviceListView.setOnItemClickListener(mDeviceClickListener);
+    mEmptyMsg = (TextView)view.findViewById(R.id.no_device);
+    
+    // Progress bar to use during scan and connection
+    mProgressBar = (ProgressBar) view.findViewById(R.id.pb_busy);
+    mProgressBar.setMax(SCAN_TIMEOUT);
 
-        public View getView(int i, View view, ViewGroup viewgroup)
-        {
-            ViewGroup viewgroup1;
-            BleDeviceInfo bledeviceinfo;
-            BluetoothDevice bluetoothdevice;
-            int j;
-            String s;
-            if (view != null)
-            {
-                viewgroup1 = (ViewGroup)view;
-            } else
-            {
-                viewgroup1 = (ViewGroup)mInflater.inflate(0x7f030004, null);
-            }
-            bledeviceinfo = (BleDeviceInfo)mDevices.get(i);
-            bluetoothdevice = bledeviceinfo.getBluetoothDevice();
-            j = bledeviceinfo.getRssi();
-            s = (new StringBuilder()).append(bluetoothdevice.getName()).append("\n").append(bluetoothdevice.getAddress()).append("\nRssi: ").append(j).append(" dBm").toString();
-            ((TextView)viewgroup1.findViewById(0x7f090014)).setText(s);
-            return viewgroup1;
-        }
+    // Alert parent activity
+    mActivity.onScanViewReady(view);
 
-        public DeviceListAdapter(Context context, List list)
-        {
-            this$0 = ScanView.this;
-            super();
-            mInflater = LayoutInflater.from(context);
-            mDevices = list;
-        }
+    return view;
+  }
+
+  @Override
+  public void onDestroy() {
+    Log.i(TAG, "onDestroy");
+    super.onDestroy();
+  }
+
+  void setStatus(String txt) {
+    mStatus.setText(txt);
+    mStatus.setTextAppearance(mContext, R.style.statusStyle_Success);
+  }
+
+  void setStatus(String txt, int duration) {
+    setStatus(txt);
+    mStatusTimer = new CustomTimer(null, duration, mClearStatusCallback);
+  }
+
+  void setError(String txt) {
+    setBusy(false);
+    stopTimers();
+    mStatus.setText(txt);
+    mStatus.setTextAppearance(mContext, R.style.statusStyle_Failure);
+  }
+
+	void notifyDataSetChanged() {
+		List<BleDeviceInfo> deviceList = mActivity.getDeviceInfoList();
+		if (mDeviceAdapter == null) {
+			mDeviceAdapter = new DeviceListAdapter(mActivity,deviceList);
+		}
+		mDeviceListView.setAdapter(mDeviceAdapter);
+		mDeviceAdapter.notifyDataSetChanged();
+		if (deviceList.size() > 0) {
+			mEmptyMsg.setVisibility(View.GONE);
+		} else {
+			mEmptyMsg.setVisibility(View.VISIBLE);			
+		}
+	}
+
+  void setBusy(boolean f) {
+    if (mProgressBar == null)
+      return;
+    if (f) {
+      mProgressBar.setVisibility(View.VISIBLE);
+    } else {
+      stopTimers();
+      mProgressBar.setVisibility(View.GONE);
+    }
+  }
+
+  void updateGui(boolean scanning) {
+    if (mBtnScan == null)
+      return; // UI not ready
+    setBusy(scanning);
+
+    if (scanning) {
+      mScanTimer = new CustomTimer(mProgressBar, SCAN_TIMEOUT, mPgScanCallback);
+      mStatus.setTextAppearance(mContext, R.style.statusStyle_Busy);
+      mBtnScan.setText("Stop");
+      mStatus.setText("Scanning...");
+      mEmptyMsg.setText(R.string.nodevice);
+      mActivity.updateGuiState();
+    } else {
+      // Indicate that scanning has stopped
+      mStatus.setTextAppearance(mContext, R.style.statusStyle_Success);
+      mBtnScan.setText("Scan");
+      mEmptyMsg.setText(R.string.scan_advice);
+      mActivity.setProgressBarIndeterminateVisibility(false);
+      mDeviceAdapter.notifyDataSetChanged();
+    }
+  }
+
+  // Listener for device list
+  private OnItemClickListener mDeviceClickListener = new OnItemClickListener() {
+    public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+    	Log.d(TAG,"item click");
+      mConnectTimer = new CustomTimer(mProgressBar, CONNECT_TIMEOUT, mPgConnectCallback);
+      mActivity.onDeviceClick(pos);
+    }
+  };
+
+  // Listener for progress timer expiration
+  private CustomTimerCallback mPgScanCallback = new CustomTimerCallback() {
+    public void onTimeout() {
+      mActivity.onScanTimeout();
     }
 
+    public void onTick(int i) {
+    }
+  };
 
-    private static final String TAG = "ScanView";
-    private final int CONNECT_TIMEOUT = 10;
-    private final int SCAN_TIMEOUT = 10;
-    private MainActivity mActivity;
-    private Button mBtnScan;
-    private CustomTimerCallback mClearStatusCallback;
-    private CustomTimer mConnectTimer;
-    private Context mContext;
-    private DeviceListAdapter mDeviceAdapter;
-    private android.widget.AdapterView.OnItemClickListener mDeviceClickListener;
-    private ListView mDeviceListView;
-    private TextView mEmptyMsg;
-    private CustomTimerCallback mPgConnectCallback;
-    private CustomTimerCallback mPgScanCallback;
-    private ProgressBar mProgressBar;
-    private CustomTimer mScanTimer;
-    private TextView mStatus;
-    private CustomTimer mStatusTimer;
-
-    public ScanView()
-    {
-        mActivity = null;
-        mDeviceAdapter = null;
-        mBtnScan = null;
-        mDeviceListView = null;
-        mScanTimer = null;
-        mConnectTimer = null;
-        mDeviceClickListener = new android.widget.AdapterView.OnItemClickListener() {
-
-            final ScanView this$0;
-
-            public void onItemClick(AdapterView adapterview, View view, int i, long l)
-            {
-                Log.d("ScanView", "item click");
-                mConnectTimer = new CustomTimer(mProgressBar, 10, mPgConnectCallback);
-                mActivity.onDeviceClick(i);
-            }
-
-            
-            {
-                this$0 = ScanView.this;
-                super();
-            }
-        };
-        mPgScanCallback = new CustomTimerCallback() {
-
-            final ScanView this$0;
-
-            public void onTick(int i)
-            {
-            }
-
-            public void onTimeout()
-            {
-                mActivity.onScanTimeout();
-            }
-
-            
-            {
-                this$0 = ScanView.this;
-                super();
-            }
-        };
-        mPgConnectCallback = new CustomTimerCallback() {
-
-            final ScanView this$0;
-
-            public void onTick(int i)
-            {
-            }
-
-            public void onTimeout()
-            {
-                mActivity.onConnectTimeout();
-            }
-
-            
-            {
-                this$0 = ScanView.this;
-                super();
-            }
-        };
-        mClearStatusCallback = new CustomTimerCallback() {
-
-            final ScanView this$0;
-
-            public void onTick(int i)
-            {
-            }
-
-            public void onTimeout()
-            {
-                mActivity.runOnUiThread(new Runnable() {
-
-                    final _cls4 this$1;
-
-                    public void run()
-                    {
-                        setStatus("");
-                    }
-
-            
-            {
-                this$1 = _cls4.this;
-                super();
-            }
-                });
-                mStatusTimer = null;
-            }
-
-            
-            {
-                this$0 = ScanView.this;
-                super();
-            }
-        };
+  // Listener for connect/disconnect expiration
+  private CustomTimerCallback mPgConnectCallback = new CustomTimerCallback() {
+    public void onTimeout() {
+      mActivity.onConnectTimeout();
     }
 
-    private void stopTimers()
-    {
-        if (mScanTimer != null)
-        {
-            mScanTimer.stop();
-            mScanTimer = null;
+    public void onTick(int i) {
+    }
+  };
+
+  // Listener for connect/disconnect expiration
+  private CustomTimerCallback mClearStatusCallback = new CustomTimerCallback() {
+    public void onTimeout() {
+      mActivity.runOnUiThread(new Runnable() {
+        public void run() {
+          setStatus("");
         }
-        if (mConnectTimer != null)
-        {
-            mConnectTimer.stop();
-            mConnectTimer = null;
-        }
+      });
+      mStatusTimer = null;
     }
 
-    void notifyDataSetChanged()
-    {
-        List list = mActivity.getDeviceInfoList();
-        if (mDeviceAdapter == null)
-        {
-            mDeviceAdapter = new DeviceListAdapter(mActivity, list);
-        }
-        mDeviceListView.setAdapter(mDeviceAdapter);
-        mDeviceAdapter.notifyDataSetChanged();
-        if (list.size() > 0)
-        {
-            mEmptyMsg.setVisibility(8);
-            return;
-        } else
-        {
-            mEmptyMsg.setVisibility(0);
-            return;
-        }
+    public void onTick(int i) {
+    }
+  };
+
+  private void stopTimers() {
+    if (mScanTimer != null) {
+      mScanTimer.stop();
+      mScanTimer = null;
+    }
+    if (mConnectTimer != null) {
+      mConnectTimer.stop();
+      mConnectTimer = null;
+    }
+  }
+
+  //
+  // CLASS DeviceAdapter: handle device list
+  //
+  class DeviceListAdapter extends BaseAdapter {
+    private List<BleDeviceInfo> mDevices;
+    private LayoutInflater mInflater;
+
+    public DeviceListAdapter(Context context, List<BleDeviceInfo> devices) {
+      mInflater = LayoutInflater.from(context);
+      mDevices = devices;
     }
 
-    public View onCreateView(LayoutInflater layoutinflater, ViewGroup viewgroup, Bundle bundle)
-    {
-        Log.i("ScanView", "onCreateView");
-        View view = layoutinflater.inflate(0x7f030008, viewgroup, false);
-        mActivity = (MainActivity)getActivity();
-        mContext = mActivity.getApplicationContext();
-        mStatus = (TextView)view.findViewById(0x7f09001b);
-        mBtnScan = (Button)view.findViewById(0x7f09001c);
-        mDeviceListView = (ListView)view.findViewById(0x7f090018);
-        mDeviceListView.setClickable(true);
-        mDeviceListView.setOnItemClickListener(mDeviceClickListener);
-        mEmptyMsg = (TextView)view.findViewById(0x7f09001a);
-        mProgressBar = (ProgressBar)view.findViewById(0x7f090019);
-        mProgressBar.setMax(10);
-        mActivity.onScanViewReady(view);
-        return view;
+    public int getCount() {
+      return mDevices.size();
     }
 
-    public void onDestroy()
-    {
-        Log.i("ScanView", "onDestroy");
-        super.onDestroy();
+    public Object getItem(int position) {
+      return mDevices.get(position);
     }
 
-    void setBusy(boolean flag)
-    {
-        if (mProgressBar == null)
-        {
-            return;
-        }
-        if (flag)
-        {
-            mProgressBar.setVisibility(0);
-            return;
-        } else
-        {
-            stopTimers();
-            mProgressBar.setVisibility(8);
-            return;
-        }
+    public long getItemId(int position) {
+      return position;
     }
 
-    void setError(String s)
-    {
-        setBusy(false);
-        stopTimers();
-        mStatus.setText(s);
-        mStatus.setTextAppearance(mContext, 0x7f070013);
+    public View getView(int position, View convertView, ViewGroup parent) {
+      ViewGroup vg;
+
+      if (convertView != null) {
+        vg = (ViewGroup) convertView;
+      } else {
+        vg = (ViewGroup) mInflater.inflate(R.layout.element_device, null);
+      }
+
+      BleDeviceInfo deviceInfo = mDevices.get(position);
+      BluetoothDevice device = deviceInfo.getBluetoothDevice();
+      int rssi = deviceInfo.getRssi();
+      String descr = device.getName() + "\n" + device.getAddress() + "\nRssi: " + rssi + " dBm";
+      ((TextView) vg.findViewById(R.id.descr)).setText(descr);
+
+      return vg;
     }
+  }
 
-    void setStatus(String s)
-    {
-        mStatus.setText(s);
-        mStatus.setTextAppearance(mContext, 0x7f070011);
-    }
-
-    void setStatus(String s, int i)
-    {
-        setStatus(s);
-        mStatusTimer = new CustomTimer(null, i, mClearStatusCallback);
-    }
-
-    void updateGui(boolean flag)
-    {
-        if (mBtnScan == null)
-        {
-            return;
-        }
-        setBusy(flag);
-        if (flag)
-        {
-            mScanTimer = new CustomTimer(mProgressBar, 10, mPgScanCallback);
-            mStatus.setTextAppearance(mContext, 0x7f070012);
-            mBtnScan.setText("Stop");
-            mStatus.setText("Scanning...");
-            mEmptyMsg.setText(0x7f05000c);
-            mActivity.updateGuiState();
-            return;
-        } else
-        {
-            mStatus.setTextAppearance(mContext, 0x7f070011);
-            mBtnScan.setText("Scan");
-            mEmptyMsg.setText(0x7f05000d);
-            mActivity.setProgressBarIndeterminateVisibility(false);
-            mDeviceAdapter.notifyDataSetChanged();
-            return;
-        }
-    }
-
-
-/*
-    static CustomTimer access$002(ScanView scanview, CustomTimer customtimer)
-    {
-        scanview.mConnectTimer = customtimer;
-        return customtimer;
-    }
-
-*/
-
-
-
-
-
-/*
-    static CustomTimer access$402(ScanView scanview, CustomTimer customtimer)
-    {
-        scanview.mStatusTimer = customtimer;
-        return customtimer;
-    }
-
-*/
 }
