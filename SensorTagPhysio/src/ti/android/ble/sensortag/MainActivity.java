@@ -289,7 +289,7 @@ public class MainActivity extends ViewPagerActivity {
   }
 
   private void startDeviceActivity() {
-    mDeviceIntent = new Intent(this, DeviceActivity.class);
+    mDeviceIntent = new Intent(this, ChooseExercise.class);
     mDeviceIntent.putExtra(DeviceActivity.EXTRA_DEVICE, mBluetoothDevice);
     startActivityForResult(mDeviceIntent, REQ_DEVICE_ACT);
   }

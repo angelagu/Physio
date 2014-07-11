@@ -115,10 +115,10 @@ public class DeviceActivity extends ViewPagerActivity {
     mStartScreenView = new StartScreenView();
     
     mSectionsPagerAdapter.addSection(mStartScreenView, "Main");
-    mSectionsPagerAdapter.addSection(mDeviceView, "Services");
-    
-    mSectionsPagerAdapter.addSection(new HelpView("help_device.html", R.layout.fragment_help, R.id.webpage), "Help");
-    PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+	mSectionsPagerAdapter.addSection(mDeviceView, "Services");
+//    
+//    mSectionsPagerAdapter.addSection(new HelpView("help_device.html", R.layout.fragment_help, R.id.webpage), "Help");
+//    PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
     // BLE
     mBtLeService = BluetoothLeService.getInstance();
@@ -203,9 +203,6 @@ public class DeviceActivity extends ViewPagerActivity {
 		  Double range = ((RangeOfMotion)getApplication()).calculateDegreeOfRotation();
 		  displayDegrees.setText("Your range of motion was " + Math.floor(range) + " degrees");
 		  bButton.setText("Start Recording");
-		  Intent intent = new Intent(DeviceActivity.this, SummaryActivity.class);
-	      startActivity(intent);
-	      finish();
 	  }
   }
   

@@ -2,6 +2,7 @@ package ti.android.ble.sensortag;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -40,6 +41,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
                 db.execSQL("DROP TABLE IF EXISTS exercise_records");
                 onCreate(db);
+        }
+        
+        public Cursor getSummary() {
+        	String id = "1";
+        	Cursor cursor = getReadableDatabase().rawQuery("select * from todo where _id = ?", new String[] { id });
+        	System.out.println(cursor);
+        	return cursor;
         }
         
 }

@@ -59,19 +59,19 @@ public class DeviceView extends Fragment {
 	
   // Sensor table; the iD corresponds to row number
 	private static final int ID_OFFSET = 0;
-  private static final int ID_KEY = 0;
-  private static final int ID_ACC = 1;
-  private static final int ID_MAG = 2;
-  private static final int ID_GYR = 3;
-  private static final int ID_OBJ = 4;
-  private static final int ID_AMB = 5;
-  private static final int ID_HUM = 6;
-  private static final int ID_BAR = 7;
+    private static final int ID_KEY = 0;
+    private static final int ID_ACC = 1;
+    private static final int ID_MAG = 2;
+    private static final int ID_GYR = 3;
+    private static final int ID_OBJ = 4;
+    private static final int ID_AMB = 5;
+    private static final int ID_HUM = 6;
+    private static final int ID_BAR = 7;
 
 	public static DeviceView mInstance = null;
 
 	// GUI
-  private TableLayout table;
+    private TableLayout table;
 	private TextView mAccValue;
 	private TextView mMagValue;
 	private TextView mGyrValue;
@@ -84,10 +84,10 @@ public class DeviceView extends Fragment {
 	private TableRow mMagPanel;
 	private TableRow mBarPanel;
 	
-  // House-keeping
-  private DecimalFormat decimal = new DecimalFormat("+0.00;-0.00");
-  private DeviceActivity mActivity;
-  private static final double PA_PER_METER = 12.0;
+    // House-keeping
+    private DecimalFormat decimal = new DecimalFormat("+0.00;-0.00");
+    private DeviceActivity mActivity;
+    private static final double PA_PER_METER = 12.0;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

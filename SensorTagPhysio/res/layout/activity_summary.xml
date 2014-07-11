@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,4 +8,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ti.android.ble.sensortag.SummaryActivity" >
 
-</RelativeLayout>
+<TableLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1">
+    <TableRow>
+        <TextView
+            android:text="Week 1"
+            android:padding="3dip" />
+        <TextView
+            android:text="80% Completed"
+            android:padding="3dip" />
+        <TextView
+            android:text="Avg Quality 60%"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Week 2"
+            android:padding="3dip" />
+        <TextView
+            android:text="85% Completed"
+            android:padding="3dip" />
+        <TextView
+            android:text="Avg Quality 70%"
+            android:padding="3dip" />
+    </TableRow>
+</TableLayout>
+</ScrollView>
