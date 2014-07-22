@@ -26,50 +26,39 @@ public class SummaryDataSource {
 	  public void close() {
 	    dbHelper.close();
 	  }
+	  
+	  public void insertExercise(ExerciseRecord record){
+		  ContentValues values = new ContentValues();
+		  values.put(DatabaseHelper.EXERCISE_TYPE_COLUMN, record.exerciseType);
+		  values.put(DatabaseHelper.QUALITY_COLUMN, record.quality);
+		  
+		  database.insert(DatabaseHelper.TABLE_NAME, null, values);
+		  Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, null, null, null, null, null, null);
+		  cursor.moveToFirst();
+		  cursor.close();		  
+	  }
+	  
+	  public List<ExerciseRecord> getAllExerciseRecords(){
+		  List<ExerciseRecord> records = new ArrayList<ExerciseRecord>();
+		  
+		  Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, null, null, null, null, null, null);
 
-//	  public Comment createComment(String comment) {
-//	    ContentValues values = new ContentValues();
-//	    values.put(MySQLiteHelper.COLUMN_COMMENT, comment);
-//	    long insertId = database.insert(MySQLiteHelper.TABLE_COMMENTS, null,
-//	        values);
-//	    Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
-//	        allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
-//	        null, null, null);
-//	    cursor.moveToFirst();
-//	    Comment newComment = cursorToComment(cursor);
-//	    cursor.close();
-//	    return newComment;
+		  cursor.moveToFirst();
+		  while (!cursor.isAfterLast()) {
+			      System.out.println(cursor);
+			      System.out.println(cursor.getString(cursor.getColumnIndex("exercise_type"))); 
+			      System.out.println(cursor.getString(cursor.getColumnIndex("quality"))); 
+			      System.out.println(cursor.getString(cursor.getColumnIndex("created_at"))); 
+			      cursor.moveToNext();
+			    }
+			    // make sure to close the cursor
+		  cursor.close();
+		  
+		  return records;
+		  
+	  }
+	  
+//	  public ExerciseRecord cursorToRecord(Cursor cursor) {
+//		  
 //	  }
-//
-//	  public void deleteComment(Comment comment) {
-//	    long id = comment.getId();
-//	    System.out.println("Comment deleted with id: " + id);
-//	    database.delete(MySQLiteHelper.TABLE_COMMENTS, MySQLiteHelper.COLUMN_ID
-//	        + " = " + id, null);
-//	  }
-//
-//	  public List<Comment> getAllComments() {
-//	    List<Comment> comments = new ArrayList<Comment>();
-//
-//	    Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
-//	        allColumns, null, null, null, null, null);
-//
-//	    cursor.moveToFirst();
-//	    while (!cursor.isAfterLast()) {
-//	      Comment comment = cursorToComment(cursor);
-//	      comments.add(comment);
-//	      cursor.moveToNext();
-//	    }
-//	    // make sure to close the cursor
-//	    cursor.close();
-//	    return comments;
-//	  }
-//
-//	  private Comment cursorToComment(Cursor cursor) {
-//	    Comment comment = new Comment();
-//	    comment.setId(cursor.getLong(0));
-//	    comment.setComment(cursor.getString(1));
-//	    return comment;
-//	  }
-
 }

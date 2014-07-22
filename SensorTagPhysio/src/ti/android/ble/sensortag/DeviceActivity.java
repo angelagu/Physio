@@ -35,6 +35,7 @@
 package ti.android.ble.sensortag;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -113,8 +114,10 @@ public class DeviceActivity extends ViewPagerActivity {
     // GUI
     mDeviceView = new DeviceView();
     mStartScreenView = new StartScreenView();
+    SummaryView mSummaryView = new SummaryView();
     
     mSectionsPagerAdapter.addSection(mStartScreenView, "Main");
+    mSectionsPagerAdapter.addSection(mSummaryView, "Summary");
 	mSectionsPagerAdapter.addSection(mDeviceView, "Services");
 //    
 //    mSectionsPagerAdapter.addSection(new HelpView("help_device.html", R.layout.fragment_help, R.id.webpage), "Help");
@@ -192,17 +195,38 @@ public class DeviceActivity extends ViewPagerActivity {
   public void recordRangeOfMotion(View view) {  
 	  Boolean isRecording = ((RangeOfMotion) this.getApplication()).isRecording();
 	  Button bButton = (Button) findViewById(R.id.button1);
-	  TextView displayDegrees = (TextView) findViewById(R.id.textView1);
+	  TextView avgDegreeText = (TextView) findViewById(R.id.avgDegrees);
+	  TextView maxDegreeText = (TextView) findViewById(R.id.maxDegrees);
+	  TextView numRepsText = (TextView) findViewById(R.id.numReps);
 	  
 	  if (!isRecording) {
 		  ((RangeOfMotion)getApplication()).startRecording();
-		  displayDegrees.setText("");
+		  avgDegreeText.setText("Recording...");
+		  maxDegreeText.setText("");
+		  numRepsText.setText("");
 		  bButton.setText("Stop Recording");
 	  } else {
 		  ((RangeOfMotion)getApplication()).stopRecording();
-		  Double range = ((RangeOfMotion)getApplication()).calculateDegreeOfRotation();
-		  displayDegrees.setText("Your range of motion was " + Math.floor(range) + " degrees");
+		  
+		  HashMap<String, Integer> result = ((RangeOfMotion)getApplication()).calculateDegreeOfRotation();
+		  int averageDegrees = result.get("averageDegree");
+		  int maxDegrees = result.get("maxDegree");
+		  int numReps = result.get("numReps");
+		  
+		  avgDegreeText.setText("Your average range of motion was " + averageDegrees + " degrees");
+		  maxDegreeText.setText("Your max range of motion was " + maxDegrees + " degrees");
+		  numRepsText.setText("Your number of repetitions was " + numReps + " reps");
+		  
 		  bButton.setText("Start Recording");
+		  
+		  ExerciseRecord record = new ExerciseRecord();
+		  record.setType("ELBOW_ROTATION");
+		  record.setQuality(averageDegrees / 90.0 * 100.0);
+		  
+		  SummaryDataSource dataSource = new SummaryDataSource(this);
+		  dataSource.open();
+		  dataSource.insertExercise(record);
+		  dataSource.close();
 	  }
   }
   

@@ -76,7 +76,9 @@
     <string name="stop_recording">Stop Recording</string>
 
     <!-- Text -->
-    <string name="range_of_rotation">0 degrees</string>
+    <string name="range_of_rotation_avg">0 degrees</string>
+    <string name="range_of_rotation_max">0 degrees</string>
+    <string name="num_reps">0 reps</string>
     <string name="title_activity_summary">SummaryActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

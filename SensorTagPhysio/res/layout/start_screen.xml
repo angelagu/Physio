@@ -20,11 +20,24 @@
         android:text="@string/start_recording" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/avgDegrees"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:text="@string/range_of_rotation"
+        android:layout_height="wrap_content"
+        android:text="@string/range_of_rotation_avg"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+	<TextView
+	    android:id="@+id/maxDegrees"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/range_of_rotation_max"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+	<TextView
+	    android:id="@+id/numReps"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/num_reps"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

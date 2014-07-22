@@ -48,9 +48,10 @@ public final class R {
     public static final class id {
         public static final int accPanel=0x7f0a0021;
         public static final int accelerometerTxt=0x7f0a0022;
-        public static final int action_settings=0x7f0a0032;
+        public static final int action_settings=0x7f0a0035;
         public static final int ambPanel=0x7f0a0029;
         public static final int ambientTemperatureTxt=0x7f0a002a;
+        public static final int avgDegrees=0x7f0a0030;
         public static final int barPanel=0x7f0a002d;
         public static final int barometerTxt=0x7f0a002e;
         public static final int btnConnect=0x7f0a0016;
@@ -74,28 +75,30 @@ public final class R {
         public static final int humidityTxt=0x7f0a002c;
         public static final int info=0x7f0a0014;
         public static final int keyPanel=0x7f0a001f;
-        public static final int listView1=0x7f0a0031;
+        public static final int listView1=0x7f0a0034;
         public static final int lw_file=0x7f0a0002;
         public static final int magPanel=0x7f0a0023;
         public static final int magnetometerTxt=0x7f0a0024;
+        public static final int maxDegrees=0x7f0a0031;
         public static final int name=0x7f0a0012;
         public static final int no_device=0x7f0a001b;
+        public static final int numReps=0x7f0a0032;
         public static final int objPanel=0x7f0a0027;
         public static final int objTemperatureText=0x7f0a0028;
-        public static final int opt_about=0x7f0a0035;
-        public static final int opt_bt=0x7f0a0036;
-        public static final int opt_e2e=0x7f0a0037;
-        public static final int opt_exit=0x7f0a0039;
-        public static final int opt_fwupdate=0x7f0a0034;
-        public static final int opt_prefs=0x7f0a0033;
-        public static final int opt_sthome=0x7f0a0038;
+        public static final int opt_about=0x7f0a0038;
+        public static final int opt_bt=0x7f0a0039;
+        public static final int opt_e2e=0x7f0a003a;
+        public static final int opt_exit=0x7f0a003c;
+        public static final int opt_fwupdate=0x7f0a0037;
+        public static final int opt_prefs=0x7f0a0036;
+        public static final int opt_sthome=0x7f0a003b;
         public static final int pager=0x7f0a0018;
         public static final int pb_busy=0x7f0a001a;
         public static final int pb_progress=0x7f0a000a;
         public static final int services_browser_layout=0x7f0a001e;
         public static final int status=0x7f0a001c;
         public static final int statusPanel=0x7f0a002f;
-        public static final int textView1=0x7f0a0030;
+        public static final int textView1=0x7f0a0033;
         public static final int title=0x7f0a000d;
         public static final int tw_directory=0x7f0a0001;
         public static final int tw_file=0x7f0a0005;
@@ -130,7 +133,7 @@ public final class R {
     public static final class string {
         public static final int about=0x7f060013;
         public static final int acc=0x7f060018;
-        public static final int action_settings=0x7f06003a;
+        public static final int action_settings=0x7f06003c;
         public static final int app_closing=0x7f06000b;
         /**  Main activity 
          */
@@ -157,7 +160,7 @@ public final class R {
         public static final int fwupdate=0x7f06000f;
         public static final int gyro=0x7f06001a;
         public static final int header=0x7f060004;
-        public static final int hello_world=0x7f060039;
+        public static final int hello_world=0x7f06003b;
         public static final int hum=0x7f06001b;
         public static final int idle=0x7f060033;
         public static final int image=0x7f060016;
@@ -172,13 +175,15 @@ public final class R {
         public static final int no_image=0x7f06002f;
         public static final int no_image_sel=0x7f060030;
         public static final int nodevice=0x7f06000c;
+        public static final int num_reps=0x7f060039;
         /**  Options menu 
          */
         public static final int prefs=0x7f06000e;
         public static final int prog_ogoing=0x7f06002b;
         /**  Text 
          */
-        public static final int range_of_rotation=0x7f060037;
+        public static final int range_of_rotation_avg=0x7f060037;
+        public static final int range_of_rotation_max=0x7f060038;
         public static final int scan_advice=0x7f06000d;
         public static final int start_prog=0x7f060029;
         /**  Buttons 
@@ -189,8 +194,8 @@ public final class R {
         public static final int tAmb=0x7f06001d;
         public static final int tObj=0x7f06001e;
         public static final int tie2e=0x7f060012;
-        public static final int title_activity_choose_exercise=0x7f06003b;
-        public static final int title_activity_summary=0x7f060038;
+        public static final int title_activity_choose_exercise=0x7f06003d;
+        public static final int title_activity_summary=0x7f06003a;
         public static final int title_device_list=0x7f060002;
         /**  FWUpdate activity 
          */

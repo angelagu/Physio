@@ -8,32 +8,38 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-        public static final String DATABASE_NAME = "exercise_records";
+        public static final String TABLE_NAME = "exercise_records";
+        public static final String EXERCISE_TYPE_COLUMN = "exercise_type";
+        public static final String QUALITY_COLUMN = "quality";
         
         public DatabaseHelper(Context context) {
-                super(context, DATABASE_NAME, null, 1);
+                super(context, TABLE_NAME, null, 1);
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
                 /*
-                 * Create the employee table and populate it with sample data.
+                 * Create the exercise_records table and populate it with sample data.
                  * In step 6, we will move these hardcoded statements to an XML document.
                  */
                 String sql = "CREATE TABLE IF NOT EXISTS exercise_records (" +
                                                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " + 
-                                                "exercise_id INTEGER, " +
-                                                "repetitions INTEGER, " +
+                                                "exercise_type TEXT, " +
+                                                "number_reps INTEGER, " +
+                                                "max_range REAL, " +
+                                                "average_range REAL, " +
                                                 "quality REAL, " +
-                                                "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)";
+                                                "created_at TEXT DEFAULT CURRENT_TIMESTAMP)";
                 db.execSQL(sql);
                 
                 ContentValues values = new ContentValues();
 
-                values.put("exercise_id", "1");
-                values.put("repetitions", "2");
+                values.put("exercise_type", "ELBOW_ROTATION");
+                values.put("number_reps", "7");
+                values.put("max_range", "67");
+                values.put("average_range", "50");
                 values.put("quality", "85");
-                db.insert("exercise_records", "exercise_id", values);
+                db.insert("exercise_records", null, values);
                 
         }
 
@@ -42,12 +48,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL("DROP TABLE IF EXISTS exercise_records");
                 onCreate(db);
         }
-        
-        public Cursor getSummary() {
-        	String id = "1";
-        	Cursor cursor = getReadableDatabase().rawQuery("select * from todo where _id = ?", new String[] { id });
-        	System.out.println(cursor);
-        	return cursor;
-        }
-        
 }

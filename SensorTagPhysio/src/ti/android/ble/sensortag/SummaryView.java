@@ -14,13 +14,19 @@ public class SummaryView extends Fragment {
 	
 	private DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     	Log.i(TAG, "onCreateView");
         mInstance = this;
     
         View view = inflater.inflate(R.layout.activity_summary, container, false);
+        
+        SummaryDataSource sum = new SummaryDataSource(this.getActivity());
+        sum.open();
+        
+        sum.getAllExerciseRecords();
+        
+        sum.close();
 
         return view;
   }
