@@ -26,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                                                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " + 
                                                 "exercise_type TEXT, " +
                                                 "number_reps INTEGER, " +
+                                                "min_range REAL, " +
                                                 "max_range REAL, " +
                                                 "average_range REAL, " +
                                                 "quality REAL, " +
@@ -35,10 +36,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ContentValues values = new ContentValues();
 
                 values.put("exercise_type", "ELBOW_ROTATION");
-                values.put("number_reps", "7");
-                values.put("max_range", "67");
-                values.put("average_range", "50");
-                values.put("quality", "85");
+                values.put("number_reps", "6");
+                values.put("min_range", "160");
+                values.put("max_range", "160");
+                values.put("average_range", "120");
+                values.put("quality", "good!");
                 db.insert("exercise_records", null, values);
                 
         }

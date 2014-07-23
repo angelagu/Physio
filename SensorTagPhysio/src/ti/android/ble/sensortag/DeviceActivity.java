@@ -209,8 +209,8 @@ public class DeviceActivity extends ViewPagerActivity {
 		  ((RangeOfMotion)getApplication()).stopRecording();
 		  
 		  HashMap<String, Integer> result = ((RangeOfMotion)getApplication()).calculateDegreeOfRotation();
-		  int averageDegrees = result.get("averageDegree");
-		  int maxDegrees = result.get("maxDegree");
+		  double averageDegrees = result.get("averageDegree");
+		  double maxDegrees = result.get("maxDegree");
 		  int numReps = result.get("numReps");
 		  
 		  avgDegreeText.setText("Your average range of motion was " + averageDegrees + " degrees");
@@ -220,8 +220,8 @@ public class DeviceActivity extends ViewPagerActivity {
 		  bButton.setText("Start Recording");
 		  
 		  ExerciseRecord record = new ExerciseRecord();
-		  record.setType("ELBOW_ROTATION");
-		  record.setQuality(averageDegrees / 90.0 * 100.0);
+		  record.setExerciseType("ELBOW_ROTATION");
+		  record.setAverageAngle(averageDegrees);
 		  
 		  SummaryDataSource dataSource = new SummaryDataSource(this);
 		  dataSource.open();
