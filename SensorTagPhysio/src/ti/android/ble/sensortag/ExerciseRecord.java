@@ -1,12 +1,13 @@
 package ti.android.ble.sensortag;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class ExerciseRecord {
-	public String exerciseType, quality;
+	public String exerciseType, quality, createdDate;
 	public int reps;
 	public double averageAngle, minAngle, maxAngle, deltaAngle;
-	public Date createdDate;
 	
 	
 	public ExerciseRecord(){
@@ -21,8 +22,13 @@ public class ExerciseRecord {
 		minAngle = min_angle;
 		maxAngle = max_angle;
 		deltaAngle = delta_angle;		
-		createdDate = created_date;
+		createdDate = dateToString(created_date);
 	}
+	
+	private String dateToString(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return dateFormat.format(date);
+  }
 	
 	public void setExerciseType(String exercise_type) {
 		exerciseType = exercise_type;
@@ -53,6 +59,6 @@ public class ExerciseRecord {
 	}
 	
 	public void setCreatedDate(Date created_date) {
-		createdDate = created_date;
+		createdDate = dateToString(created_date);
 	}
 }

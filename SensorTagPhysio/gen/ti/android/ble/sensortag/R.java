@@ -48,7 +48,7 @@ public final class R {
     public static final class id {
         public static final int accPanel=0x7f0a0021;
         public static final int accelerometerTxt=0x7f0a0022;
-        public static final int action_settings=0x7f0a0035;
+        public static final int action_settings=0x7f0a0036;
         public static final int ambPanel=0x7f0a0029;
         public static final int ambientTemperatureTxt=0x7f0a002a;
         public static final int avgDegrees=0x7f0a0030;
@@ -85,19 +85,20 @@ public final class R {
         public static final int numReps=0x7f0a0032;
         public static final int objPanel=0x7f0a0027;
         public static final int objTemperatureText=0x7f0a0028;
-        public static final int opt_about=0x7f0a0038;
-        public static final int opt_bt=0x7f0a0039;
-        public static final int opt_e2e=0x7f0a003a;
-        public static final int opt_exit=0x7f0a003c;
-        public static final int opt_fwupdate=0x7f0a0037;
-        public static final int opt_prefs=0x7f0a0036;
-        public static final int opt_sthome=0x7f0a003b;
+        public static final int opt_about=0x7f0a0039;
+        public static final int opt_bt=0x7f0a003a;
+        public static final int opt_e2e=0x7f0a003b;
+        public static final int opt_exit=0x7f0a003d;
+        public static final int opt_fwupdate=0x7f0a0038;
+        public static final int opt_prefs=0x7f0a0037;
+        public static final int opt_sthome=0x7f0a003c;
         public static final int pager=0x7f0a0018;
         public static final int pb_busy=0x7f0a001a;
         public static final int pb_progress=0x7f0a000a;
         public static final int services_browser_layout=0x7f0a001e;
         public static final int status=0x7f0a001c;
         public static final int statusPanel=0x7f0a002f;
+        public static final int tableLayout1=0x7f0a0035;
         public static final int textView1=0x7f0a0033;
         public static final int title=0x7f0a000d;
         public static final int tw_directory=0x7f0a0001;
