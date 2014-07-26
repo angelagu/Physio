@@ -57,7 +57,6 @@ public class SummaryDataSource {
 
 		  cursor.moveToFirst();
 		  while (!cursor.isAfterLast()) {
-			      System.out.println(cursor);
 			      System.out.println(cursor.getString(cursor.getColumnIndex("exercise_type"))); 
 			      System.out.println(cursor.getString(cursor.getColumnIndex("number_reps"))); 
 			      System.out.println(cursor.getString(cursor.getColumnIndex("min_angle"))); 

@@ -35,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                                                 "max_angle REAL, " +
                                                 "average_angle REAL, " +
                                                 "delta_angle REAL, " +
-                                                "quality REAL, " +
+                                                "quality STRING, " +
                                                 "created_at TEXT)";
                 db.execSQL(sql);
                 
@@ -46,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put("min_angle", "160");
                 values.put("max_angle", "160");
                 values.put("average_angle", "120");
-                values.put("delta_angle", "-50");
+                values.put("delta_angle", "40");
                 values.put("quality", "good!");
                 values.put("created_at", "First Date");
                 db.insert("exercise_records", null, values);

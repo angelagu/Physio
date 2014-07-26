@@ -90,9 +90,11 @@ public class RangeOfMotion extends Application {
 		
 		int averageDegree = (int) Math.round(findAverage(degreeArray));
 		int maxDegree = (int) Math.round(findMax(degreeArray));
+		int minDegree = (int) Math.round(findMin(degreeArray));
 		int numReps = (int) Math.ceil(numHalfReps / 2.0);
 		result.put("averageDegree", averageDegree);
 		result.put("maxDegree", maxDegree);
+		result.put("minDegree", minDegree);
 		result.put("numReps", numReps);
 		
 		System.out.println("avg degree " + result.get("averageDegree"));
@@ -122,6 +124,13 @@ public class RangeOfMotion extends Application {
 			return 0.0;
 		}
 		return Collections.max(array);	
+	}
+	
+	private Double findMin(List<Double> array) {
+		if (array.size() == 0) {
+			return 0.0;
+		}
+		return Collections.min(array);	
 	}
 	
 	private Point3D calculateInitialDirection(List<Point3D> array) {

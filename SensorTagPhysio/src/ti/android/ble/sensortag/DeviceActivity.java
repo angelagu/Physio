@@ -116,12 +116,12 @@ public class DeviceActivity extends ViewPagerActivity {
     mStartScreenView = new StartScreenView();
     SummaryView mSummaryView = new SummaryView();
     
+    mSectionsPagerAdapter.addSection(mDeviceView, "Services");
     mSectionsPagerAdapter.addSection(mStartScreenView, "Main");
     mSectionsPagerAdapter.addSection(mSummaryView, "Summary");
-	mSectionsPagerAdapter.addSection(mDeviceView, "Services");
-//    
-//    mSectionsPagerAdapter.addSection(new HelpView("help_device.html", R.layout.fragment_help, R.id.webpage), "Help");
-//    PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+    
+	//mSectionsPagerAdapter.addSection(new HelpView("help_device.html", R.layout.fragment_help, R.id.webpage), "Help");
+	//PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
     // BLE
     mBtLeService = BluetoothLeService.getInstance();
@@ -211,6 +211,7 @@ public class DeviceActivity extends ViewPagerActivity {
 		  HashMap<String, Integer> result = ((RangeOfMotion)getApplication()).calculateDegreeOfRotation();
 		  double averageDegrees = result.get("averageDegree");
 		  double maxDegrees = result.get("maxDegree");
+		  double minDegrees = result.get("minDegree");
 		  int numReps = result.get("numReps");
 		  
 		  avgDegreeText.setText("Your average range of motion was " + averageDegrees + " degrees");
@@ -221,7 +222,13 @@ public class DeviceActivity extends ViewPagerActivity {
 		  
 		  ExerciseRecord record = new ExerciseRecord();
 		  record.setExerciseType("ELBOW_ROTATION");
+		  record.setMaxAngle(maxDegrees);
 		  record.setAverageAngle(averageDegrees);
+		  record.setReps(numReps);
+		  record.setMinAngle(minDegrees);
+		  record.setDeltaAngle(170 - averageDegrees);
+		  record.setQuality("meh");
+		  record.setCreatedDate();
 		  
 		  SummaryDataSource dataSource = new SummaryDataSource(this);
 		  dataSource.open();
