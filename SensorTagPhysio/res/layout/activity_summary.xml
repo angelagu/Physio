@@ -146,8 +146,40 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:padding="10dp"
-	            android:shrinkColumns="1,3,5"
-	            android:stretchColumns="2,4,6,7,8" >
+	            android:shrinkColumns="1"
+	            android:stretchColumns="*" >
+	            
+        <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingRight="10dp" >
+ 
+        <TextView
+            android:id="@+id/numReps"
+            android:text="Number of Reps"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+ 
+        <TextView
+            android:id="@+id/avgDegrees"
+            android:text="Average Degrees" />
+        
+        <TextView
+            android:id="@+id/maxDegrees"
+            android:text="Max Degrees" />
+                
+        <TextView
+            android:id="@+id/minDegrees"
+            android:text="Min Degrees" />
+        
+        <TextView
+            android:id="@+id/quality"
+            android:text="Quality" />
+        
+        <TextView
+            android:id="@+id/date"
+            android:text="Date" />
+    </TableRow>
 	        </TableLayout>
     </ScrollView>
 

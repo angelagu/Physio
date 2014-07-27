@@ -52,29 +52,43 @@ public class SummaryView extends Fragment {
         for (int i = 0; i < rows; i++) {
 
         	   TableRow row = new TableRow(this.getActivity());
-        	   row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+        	   row.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT,
         	     LayoutParams.WRAP_CONTENT));
 
         	   // inner for loop
         	   for (int j = 0; j < cols; j++) {
-
-        	    TextView tv = new TextView(this.getActivity());
-        	    System.out.println("tv " + tv);
-        	    tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-        	      LayoutParams.WRAP_CONTENT));
-        	    tv.setGravity(Gravity.CENTER);
-        	    tv.setTextSize(18);
-        	    tv.setPadding(0, 5, 0, 5);
-
-        	    tv.setText(c.getString(j));
-
-        	    row.addView(tv);
+        		   
+	        	   if (j != 0 || j != 1) {
+	
+		        	    TextView tv = new TextView(this.getActivity());
+		        	    System.out.println("tv " + tv);
+		//        	    tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+		//        	      LayoutParams.WRAP_CONTENT));
+		        	    
+		        	    tv.setGravity(Gravity.CENTER);
+		        	    tv.setTextSize(12);
+		        	    tv.setPadding(0, 5, 0, 5);
+		        	    
+		        	    //setting the headers
+		        	    if (i == 0) {
+		        	    	tv.setText(c.getColumnName(j));
+		        	    	row.addView(tv);
+		        	    }
+		        	    
+		        	    
+		        	    //setting the first row
+		        	    tv.setText(c.getString(j));
+		
+		        	    row.addView(tv);
+	        	   }
 
         	   }
         	   System.out.println("table layout: " + table_layout);
-        	   table_layout.addView(row, new TableLayout.LayoutParams(
-        	              LayoutParams.WRAP_CONTENT,
-        	             LayoutParams.WRAP_CONTENT));
+        	   System.out.println(row);
+//        	   table_layout.addView(row, new TableLayout.LayoutParams(
+//        	              LayoutParams.WRAP_CONTENT,
+//        	             LayoutParams.WRAP_CONTENT));
+        	   table_layout.addView(row);
         	   c.moveToNext();
         	  }
         c.close();
