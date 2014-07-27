@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/demo_image_desc"
-        android:src="@drawable/FlexTech1" />
+        android:src="@drawable/flex_tech1" />
 
     <TextView
         android:id="@+id/step2"

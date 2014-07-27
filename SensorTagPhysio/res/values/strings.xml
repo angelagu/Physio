@@ -83,9 +83,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_choose_exercise">ChooseExercise</string>
-    <string />
-    <string />
-    <string />
+
     <string name="step1">Step 1: Attach FlexTech to wrist</string>
     <string name="step2">Step 2: Turn on sensor</string>
     <string name="startposition">Start Position: </string>

@@ -16,7 +16,7 @@
         android:layout_width="423dp"
         android:layout_height="134dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/Elbow_Instructions_1" />
+        android:src="@drawable/elbow_instructions_1" />
 
     <TextView
         android:id="@+id/end_position"
@@ -30,13 +30,13 @@
         android:layout_width="198dp"
         android:layout_height="187dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/Elbow_Instructions_2" />
+        android:src="@drawable/elbow_instructions_2" />
     
     <Button 
         android:id="@+id/done_exercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layou_gravity="center"
+        android:layout_gravity="center"
         android:text="@string/stop_recording"/>
 
 </LinearLayout>
