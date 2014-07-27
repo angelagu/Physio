@@ -42,15 +42,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ContentValues values = new ContentValues();
 
                 values.put("exercise_type", "ELBOW_ROTATION");
-                values.put("number_reps", "6");
-                values.put("min_angle", "160");
-                values.put("max_angle", "160");
-                values.put("average_angle", "120");
-                values.put("delta_angle", "40");
+                values.put("number_reps", 6.0);
+                values.put("min_angle", 100);
+                values.put("max_angle", 140);
+                values.put("average_angle", 120);
+                values.put("delta_angle", (0 - 50.0));
                 values.put("quality", "GOOD");
-                values.put("created_at", "First Date");
+                values.put("created_at", "2014/Jul/27 18:24:05");
                 db.insert("exercise_records", null, values);
-                
+                                
         }
 
         @Override
