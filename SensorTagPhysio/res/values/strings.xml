@@ -99,6 +99,8 @@
     <string name="bad_message">Try to improve your angle next time!</string>
     <string name="average_message">Your average angle of motion was: </string>
     
+   
+    
     <!--  Image Descriptions -->
     <string name="demo_image_desc">How to put on device</string>
     

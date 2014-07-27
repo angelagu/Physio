@@ -17,7 +17,7 @@
   perform, display or sell this Software and/or its documentation for any purpose.
  
   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+  PROVIDED ï¿½AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -64,6 +64,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.TextView;
 
@@ -199,12 +200,31 @@ public class DeviceActivity extends ViewPagerActivity {
 	  TextView maxDegreeText = (TextView) findViewById(R.id.maxDegrees);
 	  TextView numRepsText = (TextView) findViewById(R.id.numReps);
 	  
+	  TextView startPositionText = (TextView) findViewById(R.id.start_position);
+	  TextView endPositionText = (TextView) findViewById(R.id.end_position);
+	  ImageView startPositionImage = (ImageView) findViewById(R.id.start_image);
+	  ImageView endPositionImage = (ImageView) findViewById(R.id.end_image);
+	  TextView step1 = (TextView) findViewById(R.id.step1);
+	  TextView step2 = (TextView) findViewById(R.id.step2);
+	  ImageView demoImage = (ImageView) findViewById(R.id.demo_image);
+	  
 	  if (!isRecording) {
 		  ((RangeOfMotion)getApplication()).startRecording();
 		  avgDegreeText.setText("Recording...");
 		  maxDegreeText.setText("");
 		  numRepsText.setText("");
 		  bButton.setText("Stop Recording");
+		  
+		  step1.setVisibility(8);
+		  step2.setVisibility(8);
+		  demoImage.setVisibility(8);
+		  
+		  startPositionText.setVisibility(0);
+		  endPositionText.setVisibility(0);
+		  startPositionImage.setVisibility(0);
+		  endPositionImage.setVisibility(0);
+		  
+		  
 	  } else {
 		  ((RangeOfMotion)getApplication()).stopRecording();
 		  
