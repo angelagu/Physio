@@ -50,28 +50,13 @@ public class SummaryDataSource {
 		  return cursor;
 	  }
 	  
-	  public List<ExerciseRecord> getAllExerciseRecords(){
-		  List<ExerciseRecord> records = new ArrayList<ExerciseRecord>();
-		  
+	  public Cursor getAllExerciseRecords(){ 
 		  Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, null, null, null, null, null, null);
 
-		  cursor.moveToFirst();
-		  while (!cursor.isAfterLast()) {
-			      System.out.println(cursor.getString(cursor.getColumnIndex("exercise_type"))); 
-			      System.out.println(cursor.getString(cursor.getColumnIndex("number_reps"))); 
-			      System.out.println(cursor.getString(cursor.getColumnIndex("min_angle"))); 
-			      System.out.println(cursor.getString(cursor.getColumnIndex("max_angle"))); 
-			      System.out.println(cursor.getString(cursor.getColumnIndex("average_angle"))); 
-			      System.out.println(cursor.getString(cursor.getColumnIndex("delta_angle"))); 
-			      System.out.println(cursor.getString(cursor.getColumnIndex("quality"))); 
-			      System.out.println(cursor.getString(cursor.getColumnIndex("created_at"))); 
-			      cursor.moveToNext();
-			    }
-			    // make sure to close the cursor
-		  cursor.close();
-		  
-		  return records;
-		  
+		  if (cursor != null) {
+			   cursor.moveToFirst();
+		  }
+		  return cursor;
 	  }
 	  
 
