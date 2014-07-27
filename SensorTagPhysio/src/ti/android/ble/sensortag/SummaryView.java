@@ -90,7 +90,8 @@ public class SummaryView extends Fragment {
 		  	int goodCount = 0, okCount = 0, needsImprovementCount = 0, repsPerExerciseTotal = 0, averageAngleTotal = 0;
 		  	
 		  	//loop through db, updating counters
-	    
+		  	
+		  	
 	    //update average reps per exercise
 	    TextView repNumber = (TextView) view.findViewById(R.id.repNumber);
 		repNumber.setText(repsPerExerciseTotal/rows);

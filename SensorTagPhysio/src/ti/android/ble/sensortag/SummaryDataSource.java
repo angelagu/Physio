@@ -17,6 +17,7 @@ public class SummaryDataSource {
 	  // Database fields
 	  private SQLiteDatabase database;
 	  private DatabaseHelper dbHelper;
+	  public String tableName[] = {"exercise_records"};
 
 	  public SummaryDataSource(Context context) {
 	    dbHelper = new DatabaseHelper(context);
@@ -58,6 +59,31 @@ public class SummaryDataSource {
 			   cursor.moveToFirst();
 		  }
 		  return cursor;
+	  }
+	  
+	  public int getRepTotal(){
+		  Cursor cursor = database.rawQuery("SELECT SUM(2) FROM ?", tableName);
+		  return cursor.getInt(0);
+	  }
+	  
+	  public int getAverageAngleTotal(){
+		  Cursor cursor = database.rawQuery("SELECT SUM(5) FROM ?", tableName);
+		  return cursor.getInt(0);
+	  }
+	  
+	  public int getGoodCount(){
+		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM ? WHERE quality=GOOD", tableName);
+		  return cursor.getInt(0);
+	  }
+	  
+	  public int getOkCount(){
+		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM ? WHERE quality=OK", tableName);
+		  return cursor.getInt(0);
+	  }
+	  
+	  public int getNeedsImprovementCount(){
+		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM ? WHERE quality=NEEDS IMPROVEMENT", tableName);
+		  return cursor.getInt(0);
 	  }
 	  
 
