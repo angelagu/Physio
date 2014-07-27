@@ -28,8 +28,7 @@
     <application
         android:name=".RangeOfMotion"
         android:allowBackup="false"
-        android:icon="@drawable/tible"
-        android:label="@string/app_name"
+        android:label="@string/flextech"
         android:theme="@android:style/Theme.Holo.Light" >
         <service
             android:name="ti.android.ble.common.BluetoothLeService"
