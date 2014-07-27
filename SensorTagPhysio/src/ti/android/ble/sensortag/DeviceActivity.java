@@ -227,7 +227,7 @@ public class DeviceActivity extends ViewPagerActivity {
 		  record.setReps(numReps);
 		  record.setMinAngle(minDegrees);
 		  record.setDeltaAngle(170 - averageDegrees);
-		  record.setQuality("meh");
+		  record.setQuality("GOOD");
 		  record.setCreatedDate();
 		  
 		  SummaryDataSource dataSource = new SummaryDataSource(this);

@@ -68,15 +68,6 @@ public class SummaryView extends Fragment {
 		        	    tv.setGravity(Gravity.CENTER);
 		        	    tv.setTextSize(12);
 		        	    tv.setPadding(0, 5, 0, 5);
-		        	    
-		        	    //setting the headers
-		        	    if (i == 0) {
-		        	    	tv.setText(c.getColumnName(j));
-		        	    	row.addView(tv);
-		        	    }
-		        	    
-		        	    
-		        	    //setting the first row
 		        	    tv.setText(c.getString(j));
 		
 		        	    row.addView(tv);

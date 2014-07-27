@@ -62,28 +62,48 @@ public class SummaryDataSource {
 	  }
 	  
 	  public int getRepTotal(){
-		  Cursor cursor = database.rawQuery("SELECT SUM(2) FROM ?", tableName);
-		  return cursor.getInt(0);
+		  Cursor cursor = database.rawQuery("SELECT SUM(2) FROM exercise_records", null);
+		  int reps = 0;
+		  while(cursor.moveToNext()) {
+		      reps = cursor.getInt(0); 
+		  }
+		  return reps;
 	  }
 	  
 	  public int getAverageAngleTotal(){
-		  Cursor cursor = database.rawQuery("SELECT SUM(5) FROM ?", tableName);
-		  return cursor.getInt(0);
+		  Cursor cursor = database.rawQuery("SELECT SUM(5) FROM exercise_records", null);
+		  int avgAngle = 0;
+		  while(cursor.moveToNext()) {
+			  avgAngle = cursor.getInt(0); 
+		  }
+		  return avgAngle;
 	  }
 	  
 	  public int getGoodCount(){
-		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM ? WHERE quality=GOOD", tableName);
-		  return cursor.getInt(0);
+		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM exercise_records WHERE quality='GOOD'", null);
+		  int count = 0;
+		  while(cursor.moveToNext()) {
+			  count = cursor.getInt(0); 
+		  }
+		  return count;
 	  }
 	  
 	  public int getOkCount(){
-		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM ? WHERE quality=OK", tableName);
-		  return cursor.getInt(0);
+		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM exercise_records WHERE quality='OK'", null);
+		  int count = 0;
+		  while(cursor.moveToNext()) {
+			  count = cursor.getInt(0); 
+		  }
+		  return count;
 	  }
 	  
 	  public int getNeedsImprovementCount(){
-		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM ? WHERE quality=NEEDS IMPROVEMENT", tableName);
-		  return cursor.getInt(0);
+		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM exercise_records WHERE quality='NEEDS IMPROVEMENT'", null);
+		  int count = 0;
+		  while(cursor.moveToNext()) {
+			  count = cursor.getInt(0); 
+		  }
+		  return count;
 	  }
 	  
 
