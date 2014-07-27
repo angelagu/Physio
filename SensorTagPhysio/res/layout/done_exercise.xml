@@ -61,7 +61,7 @@
         android:text="@string/bad_label"/>  -->
         
     <TextView
-        android:id="+id/average_message"
+        android:id="@+id/average_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -100,7 +100,7 @@
         android:id="@+id/repeat_exercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layou_gravity="center"
+        android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:text="@string/repeat_exercise"/> 
         
@@ -108,9 +108,7 @@
         android:id="@+id/new_exercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layou_gravity="center"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="@string/new_exercise"/>
-    
-
 </LinearLayout>

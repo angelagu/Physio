@@ -153,7 +153,7 @@
 	        android:layout_height="wrap_content" >
  
         <TextView
-            android:id="@+id/numReps"
+            android:id="@+id/numRepsTable"
             android:text="Reps"
             android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -161,46 +161,46 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
  
         <TextView
-            android:id="@+id/avgDegrees"
+            android:id="@+id/avgDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
             android:text="Avg Deg" />
                 
         <TextView
-            android:id="@+id/minDegrees"
+            android:id="@+id/minDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
             android:text="Min Deg" />
         
         <TextView
-            android:id="@+id/maxDegrees"
+            android:id="@+id/maxDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
             android:text="Max Deg" />
         
         <TextView
-            android:id="@+id/deltaDegrees"
+            android:id="@+id/deltaDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
             android:text="Delta Deg" />
         
         <TextView
-            android:id="@+id/quality"
+            android:id="@+id/qualityTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
             android:text="Quality" />
         
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/dateTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
-            android:text="Date" />
+			android:text="Date" />
     </TableRow>
 	        </TableLayout>
     </ScrollView>

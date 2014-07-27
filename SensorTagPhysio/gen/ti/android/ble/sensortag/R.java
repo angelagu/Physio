@@ -35,87 +35,100 @@ public final class R {
         public static final int elbow_instructions_1=0x7f020007;
         public static final int elbow_instructions_2=0x7f020008;
         public static final int flex_tech1=0x7f020009;
-        public static final int gyroscope=0x7f02000a;
-        public static final int humidity=0x7f02000b;
-        public static final int ic_launcher=0x7f02000c;
-        public static final int irtemperature=0x7f02000d;
-        public static final int list_item_normal=0x7f02000e;
-        public static final int sensortag=0x7f02000f;
-        public static final int sensortag_magnetometer=0x7f020010;
-        public static final int sensortag_simplekeys=0x7f020011;
-        public static final int temperature=0x7f020012;
-        public static final int ti_stk_2c_pos_rgb_png=0x7f020013;
-        public static final int tible=0x7f020014;
-        public static final int unknown=0x7f020015;
+        public static final int good_job=0x7f02000a;
+        public static final int gyroscope=0x7f02000b;
+        public static final int humidity=0x7f02000c;
+        public static final int ic_launcher=0x7f02000d;
+        public static final int irtemperature=0x7f02000e;
+        public static final int list_item_normal=0x7f02000f;
+        public static final int needs_improvement=0x7f020010;
+        public static final int okay=0x7f020011;
+        public static final int sensortag=0x7f020012;
+        public static final int sensortag_magnetometer=0x7f020013;
+        public static final int sensortag_simplekeys=0x7f020014;
+        public static final int temperature=0x7f020015;
+        public static final int ti_stk_2c_pos_rgb_png=0x7f020016;
+        public static final int tible=0x7f020017;
+        public static final int unknown=0x7f020018;
     }
     public static final class id {
-        public static final int accPanel=0x7f0a0045;
-        public static final int accelerometerTxt=0x7f0a0046;
-        public static final int action_settings=0x7f0a0054;
-        public static final int ambPanel=0x7f0a004d;
-        public static final int ambientTemperatureTxt=0x7f0a004e;
+        public static final int accPanel=0x7f0a004c;
+        public static final int accelerometerTxt=0x7f0a004d;
+        public static final int action_settings=0x7f0a005e;
+        public static final int ambPanel=0x7f0a0054;
+        public static final int ambientTemperatureTxt=0x7f0a0055;
         public static final int averageAngle=0x7f0a001b;
         public static final int averageAngleNumber=0x7f0a001c;
-        public static final int avgDegrees=0x7f0a0023;
-        public static final int barPanel=0x7f0a0051;
-        public static final int barometerTxt=0x7f0a0052;
-        public static final int btnConnect=0x7f0a003a;
+        public static final int average_message=0x7f0a0034;
+        public static final int avgDegrees=0x7f0a005b;
+        public static final int avgDegreesTable=0x7f0a0023;
+        public static final int barPanel=0x7f0a0058;
+        public static final int barometerTxt=0x7f0a0059;
+        public static final int btnConnect=0x7f0a0041;
         public static final int btn_confirm=0x7f0a0004;
         public static final int btn_load_a=0x7f0a0007;
         public static final int btn_load_b=0x7f0a0008;
         public static final int btn_load_c=0x7f0a0009;
-        public static final int btn_scan=0x7f0a0041;
+        public static final int btn_scan=0x7f0a0048;
         public static final int btn_start=0x7f0a000d;
         public static final int button1=0x7f0a0000;
         public static final int button2=0x7f0a0001;
         public static final int buttonOK=0x7f0a0030;
-        public static final int buttons=0x7f0a0044;
+        public static final int buttons=0x7f0a004b;
+        public static final int congrats=0x7f0a0031;
         public static final int content=0x7f0a002e;
-        public static final int date=0x7f0a0027;
+        public static final int dateTable=0x7f0a0027;
         public static final int deltaAngle=0x7f0a001e;
         public static final int deltaAngleNumber=0x7f0a001f;
         public static final int demo_image=0x7f0a0029;
-        public static final int descr=0x7f0a0039;
-        public static final int device_list=0x7f0a003d;
-        public static final int done_exercise=0x7f0a0035;
-        public static final int end_image=0x7f0a0034;
-        public static final int end_position=0x7f0a0033;
+        public static final int descr=0x7f0a0040;
+        public static final int device_list=0x7f0a0044;
+        public static final int done_exercise=0x7f0a003c;
+        public static final int end_image=0x7f0a003b;
+        public static final int end_position=0x7f0a003a;
         public static final int footer=0x7f0a002f;
         public static final int good=0x7f0a0012;
         public static final int goodNumber=0x7f0a0013;
-        public static final int gyrPanel=0x7f0a0049;
-        public static final int gyroscopeTxt=0x7f0a004a;
+        public static final int gyrPanel=0x7f0a0050;
+        public static final int gyroscopeTxt=0x7f0a0051;
         public static final int header=0x7f0a002d;
-        public static final int humPanel=0x7f0a004f;
-        public static final int humidityTxt=0x7f0a0050;
-        public static final int info=0x7f0a0038;
-        public static final int keyPanel=0x7f0a0043;
+        public static final int humPanel=0x7f0a0056;
+        public static final int humidityTxt=0x7f0a0057;
+        public static final int info=0x7f0a003f;
+        public static final int keyPanel=0x7f0a004a;
         public static final int lw_file=0x7f0a0003;
-        public static final int magPanel=0x7f0a0047;
-        public static final int magnetometerTxt=0x7f0a0048;
-        public static final int maxDegrees=0x7f0a0024;
-        public static final int minDegrees=0x7f0a0025;
-        public static final int name=0x7f0a0036;
+        public static final int magPanel=0x7f0a004e;
+        public static final int magnetometerTxt=0x7f0a004f;
+        public static final int maxDegrees=0x7f0a005c;
+        public static final int maxDegreesTable=0x7f0a0024;
+        public static final int minDegreesTable=0x7f0a0025;
+        public static final int name=0x7f0a003d;
         public static final int needsImprovement=0x7f0a0018;
         public static final int needsImprovementNumber=0x7f0a0019;
-        public static final int no_device=0x7f0a003f;
-        public static final int numReps=0x7f0a0022;
-        public static final int objPanel=0x7f0a004b;
-        public static final int objTemperatureText=0x7f0a004c;
+        public static final int new_exercise=0x7f0a0037;
+        public static final int no_device=0x7f0a0046;
+        public static final int numReps=0x7f0a005d;
+        public static final int numRepsTable=0x7f0a0022;
+        public static final int objPanel=0x7f0a0052;
+        public static final int objTemperatureText=0x7f0a0053;
         public static final int ok=0x7f0a0015;
         public static final int okNumber=0x7f0a0016;
-        public static final int opt_about=0x7f0a0057;
-        public static final int opt_bt=0x7f0a0058;
-        public static final int opt_e2e=0x7f0a0059;
-        public static final int opt_exit=0x7f0a005b;
-        public static final int opt_fwupdate=0x7f0a0056;
-        public static final int opt_prefs=0x7f0a0055;
-        public static final int opt_sthome=0x7f0a005a;
-        public static final int pager=0x7f0a003c;
-        public static final int pb_busy=0x7f0a003e;
+        public static final int okay=0x7f0a0032;
+        public static final int okay_label=0x7f0a0033;
+        public static final int okay_message=0x7f0a0035;
+        public static final int opt_about=0x7f0a0061;
+        public static final int opt_bt=0x7f0a0062;
+        public static final int opt_e2e=0x7f0a0063;
+        public static final int opt_exit=0x7f0a0065;
+        public static final int opt_fwupdate=0x7f0a0060;
+        public static final int opt_prefs=0x7f0a005f;
+        public static final int opt_sthome=0x7f0a0064;
+        public static final int pager=0x7f0a0043;
+        public static final int pb_busy=0x7f0a0045;
         public static final int pb_progress=0x7f0a000b;
-        public static final int quality=0x7f0a0026;
+        public static final int qualityTable=0x7f0a0026;
         public static final int repNumber=0x7f0a0010;
+        public static final int repeat_exercise=0x7f0a0036;
         public static final int repsPerExercise=0x7f0a000f;
         public static final int row1=0x7f0a000e;
         public static final int row2=0x7f0a0011;
@@ -123,12 +136,12 @@ public final class R {
         public static final int row4=0x7f0a0017;
         public static final int row5=0x7f0a001a;
         public static final int row6=0x7f0a001d;
-        public static final int services_browser_layout=0x7f0a0042;
+        public static final int services_browser_layout=0x7f0a0049;
         public static final int startRecordButton=0x7f0a002b;
-        public static final int start_image=0x7f0a0032;
-        public static final int start_position=0x7f0a0031;
-        public static final int status=0x7f0a0040;
-        public static final int statusPanel=0x7f0a0053;
+        public static final int start_image=0x7f0a0039;
+        public static final int start_position=0x7f0a0038;
+        public static final int status=0x7f0a0047;
+        public static final int statusPanel=0x7f0a005a;
         public static final int step1=0x7f0a0028;
         public static final int step2=0x7f0a002a;
         public static final int tableLayout1=0x7f0a0020;
@@ -139,8 +152,8 @@ public final class R {
         public static final int tw_info=0x7f0a000a;
         public static final int tw_log=0x7f0a000c;
         public static final int tw_target=0x7f0a0005;
-        public static final int uuid=0x7f0a0037;
-        public static final int webpage=0x7f0a003b;
+        public static final int uuid=0x7f0a003e;
+        public static final int webpage=0x7f0a0042;
     }
     public static final class layout {
         public static final int activity_choose_exercise=0x7f030000;
@@ -169,11 +182,14 @@ public final class R {
     public static final class string {
         public static final int about=0x7f060013;
         public static final int acc=0x7f060018;
-        public static final int action_settings=0x7f06003c;
+        public static final int action_settings=0x7f06003e;
         public static final int app_closing=0x7f06000b;
         /**  Main activity 
          */
         public static final int app_name=0x7f060000;
+        public static final int average_message=0x7f06004b;
+        public static final int bad_label=0x7f060047;
+        public static final int bad_message=0x7f06004a;
         public static final int bar=0x7f06001c;
         public static final int ble_not_supported=0x7f060008;
         public static final int bt=0x7f060010;
@@ -183,11 +199,12 @@ public final class R {
         public static final int btn_txt_confirm=0x7f060034;
         public static final int button_scan=0x7f060001;
         public static final int cancel=0x7f06002a;
+        public static final int congrats=0x7f060044;
         public static final int control=0x7f060006;
         public static final int cur_image=0x7f060032;
         /**   Image Descriptions 
          */
-        public static final int demo_image_desc=0x7f060042;
+        public static final int demo_image_desc=0x7f06004c;
         /**  Device activity 
          */
         public static final int dev_addr=0x7f060015;
@@ -195,12 +212,17 @@ public final class R {
         public static final int disconnected=0x7f060005;
         public static final int empty1=0x7f060024;
         public static final int empty3=0x7f060020;
-        public static final int endposition=0x7f060041;
+        public static final int endposition=0x7f060043;
         public static final int exit=0x7f060014;
+        /**   Header 
+         */
+        public static final int flextech=0x7f06004d;
         public static final int fwupdate=0x7f06000f;
+        public static final int good_label=0x7f060046;
+        public static final int good_message=0x7f060049;
         public static final int gyro=0x7f06001a;
         public static final int header=0x7f060004;
-        public static final int hello_world=0x7f06003b;
+        public static final int hello_world=0x7f06003d;
         public static final int hum=0x7f06001b;
         public static final int idle=0x7f060033;
         public static final int image=0x7f060016;
@@ -211,34 +233,38 @@ public final class R {
         public static final int load_image_b=0x7f06002d;
         public static final int load_image_c=0x7f06002e;
         public static final int mag=0x7f060019;
+        public static final int new_exercise=0x7f060038;
         public static final int new_image=0x7f060031;
         public static final int no_image=0x7f06002f;
         public static final int no_image_sel=0x7f060030;
         public static final int nodevice=0x7f06000c;
-        public static final int num_reps=0x7f060039;
+        public static final int num_reps=0x7f06003b;
+        public static final int okay_label=0x7f060045;
+        public static final int okay_message=0x7f060048;
         /**  Options menu 
          */
         public static final int prefs=0x7f06000e;
         public static final int prog_ogoing=0x7f06002b;
         /**  Text 
          */
-        public static final int range_of_rotation_avg=0x7f060037;
-        public static final int range_of_rotation_max=0x7f060038;
+        public static final int range_of_rotation_avg=0x7f060039;
+        public static final int range_of_rotation_max=0x7f06003a;
+        public static final int repeat_exercise=0x7f060037;
         public static final int scan_advice=0x7f06000d;
         public static final int start_prog=0x7f060029;
         /**  Buttons 
          */
         public static final int start_recording=0x7f060035;
-        public static final int startposition=0x7f060040;
-        public static final int step1=0x7f06003e;
-        public static final int step2=0x7f06003f;
+        public static final int startposition=0x7f060042;
+        public static final int step1=0x7f060040;
+        public static final int step2=0x7f060041;
         public static final int sthome=0x7f060011;
         public static final int stop_recording=0x7f060036;
         public static final int tAmb=0x7f06001d;
         public static final int tObj=0x7f06001e;
         public static final int tie2e=0x7f060012;
-        public static final int title_activity_choose_exercise=0x7f06003d;
-        public static final int title_activity_summary=0x7f06003a;
+        public static final int title_activity_choose_exercise=0x7f06003f;
+        public static final int title_activity_summary=0x7f06003c;
         public static final int title_device_list=0x7f060002;
         /**  FWUpdate activity 
          */
