@@ -16,7 +16,8 @@
         android:layout_width="232dp"
         android:layout_height="144dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/elbow_instructions_1" />
+        android:src="@drawable/elbow_instructions_1" 
+        android:contentDescription="@string/demo_image_desc"/>
 
     <TextView
         android:id="@+id/end_position"
@@ -30,7 +31,8 @@
         android:layout_width="172dp"
         android:layout_height="163dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/elbow_instructions_2" />
+        android:src="@drawable/elbow_instructions_2" 
+        android:contentDescription="@string/demo_image_desc"/>
     
     <Button 
         android:id="@+id/done_exercise"
