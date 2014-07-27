@@ -3,6 +3,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+    <TextView 
+        android:id="@+id/congrats"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/congrats"/>
+    
+   <!--  <ImageView 
+        android:id="@+id/okay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/okay"/>
+    
+    <TextView 
+        android:id="@+id/okay_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/okay_label"/> 
+    
+   <ImageView 
+        android:id="@+id/good"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/goodJob"/>
+    
+    <TextView 
+        android:id="@+id/good_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/good_label"/>-->
+    
+    <ImageView 
+        android:id="@+id/bad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/needsImprovement"/>
+    
+    <TextView 
+        android:id="@+id/bad_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/bad_label"/> 
+        
+    <TextView
+        android:id="+id/"
+        
+    <Button 
+        android:id="@+id/repeat_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layou_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/repeat_exercise"/> 
+        
+    <Button 
+        android:id="@+id/new_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layou_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/new_exercise"/>
     
 
 </LinearLayout>

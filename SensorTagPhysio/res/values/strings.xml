@@ -74,6 +74,8 @@
     <!-- Buttons -->
     <string name="start_recording">Start Recording</string>
     <string name="stop_recording">Stop Recording</string>
+    <string name="repeat_exercise">Repeat Exercise</string>
+    <string name="new_exercise">Choose New Exercise</string>
 
     <!-- Text -->
     <string name="range_of_rotation_avg">0 degrees</string>
@@ -90,6 +92,13 @@
     <string name="step2">Step 2: Turn on sensor</string>
     <string name="startposition">Start Position: </string>
     <string name="endposition">End Position: </string>
+    <string name="congrats">Congratulations, you finished an exercise.</string>
+    <string name="okay_label">You did OKAY</string>
+    <string name="good_label">You did GOOD</string>
+    <string name="bad_label">You NEED IMPROVEMENT</string>
+    <string name="okay_message"></string>
+    <string name="good_message"></string>
+    <string name="bad_message"></string>
     
     <!--  Image Descriptions -->
     <string name="demo_image_desc">How to put on device</string>

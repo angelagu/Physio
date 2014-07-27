@@ -13,8 +13,8 @@
     
     <ImageView
         android:id="@+id/start_image"
-        android:layout_width="423dp"
-        android:layout_height="134dp"
+        android:layout_width="232dp"
+        android:layout_height="144dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/Elbow_Instructions_1" />
 
@@ -27,8 +27,8 @@
 
     <ImageView
         android:id="@+id/end_image"
-        android:layout_width="198dp"
-        android:layout_height="187dp"
+        android:layout_width="172dp"
+        android:layout_height="163dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/Elbow_Instructions_2" />
     
@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layou_gravity="center"
+        android:layout_marginTop="20dp"
         android:text="@string/stop_recording"/>
 
 </LinearLayout>
