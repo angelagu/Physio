@@ -145,39 +145,61 @@
 	            android:id="@+id/tableLayout1"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:padding="10dp"
-	            android:shrinkColumns="1"
-	            android:stretchColumns="*" >
+	            android:padding="5dp">
 	            
         <TableRow
 	        android:id="@+id/tableRow1"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:paddingRight="10dp" >
+	        android:layout_height="wrap_content" >
  
         <TextView
             android:id="@+id/numReps"
-            android:text="Number of Reps"
+            android:text="Reps"
+            android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall" />
  
         <TextView
             android:id="@+id/avgDegrees"
-            android:text="Average Degrees" />
-        
-        <TextView
-            android:id="@+id/maxDegrees"
-            android:text="Max Degrees" />
+            android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+            android:text="Avg Deg" />
                 
         <TextView
             android:id="@+id/minDegrees"
-            android:text="Min Degrees" />
+            android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+            android:text="Min Deg" />
+        
+        <TextView
+            android:id="@+id/maxDegrees"
+            android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+            android:text="Max Deg" />
+        
+        <TextView
+            android:id="@+id/deltaDegrees"
+            android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+            android:text="Delta Deg" />
         
         <TextView
             android:id="@+id/quality"
+            android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
             android:text="Quality" />
         
         <TextView
             android:id="@+id/date"
+            android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
             android:text="Date" />
     </TableRow>
 	        </TableLayout>
