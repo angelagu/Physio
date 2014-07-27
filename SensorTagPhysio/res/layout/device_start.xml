@@ -20,14 +20,14 @@
         android:src="@drawable/FlexTech1" />
 
     <TextView
-        android:id="@id/step2"
+        android:id="@+id/step2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
         android:text="@string/step2" />
 
     <Button
-        android:id="@id/startRecordButton"
+        android:id="@+id/startRecordButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
