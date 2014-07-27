@@ -17,6 +17,9 @@ public class SummaryView extends Fragment {
 	
 	private static final String TAG = "StartScreenView";
 	public static SummaryView mInstance = null;
+	public SummaryDataSource sum = new SummaryDataSource(this.getActivity());
+	
+	public static View view;
 	
 	private TableLayout table_layout;
 	
@@ -25,7 +28,7 @@ public class SummaryView extends Fragment {
     	Log.i(TAG, "onCreateView");
         mInstance = this;
         
-        View view = inflater.inflate(R.layout.activity_summary, container, false);
+        view = inflater.inflate(R.layout.activity_summary, container, false);
         table_layout = (TableLayout) view.findViewById(R.id.tableLayout1);
         
         buildTable();
@@ -34,7 +37,6 @@ public class SummaryView extends Fragment {
   }
     
     public void buildTable() {
-        SummaryDataSource sum = new SummaryDataSource(this.getActivity());
         sum.open();
         
         Cursor c = sum.getAllExerciseRecords();
@@ -75,12 +77,12 @@ public class SummaryView extends Fragment {
         	   c.moveToNext();
         	  }
         sum.close();
-    	}
     }
+    
 
 	public void updateImportantInfo(){
-			sqlcon.open();
-		  	Cursor c = sqlcon.readEntry();
+			sum.open();
+		  	Cursor c = sum.getAllExerciseRecords();
 		  	int rows = c.getCount();
 		  	c.moveToFirst();
 		  	
@@ -90,15 +92,15 @@ public class SummaryView extends Fragment {
 		  	//loop through db, updating counters
 	    
 	    //update average reps per exercise
-	    TextView repNumber = (TextView) findViewById(R.id.repNumber);
+	    TextView repNumber = (TextView) view.findViewById(R.id.repNumber);
 		repNumber.setText(repsPerExerciseTotal/rows);
 		
 		//update average average angle
-	    TextView averageAngle = (TextView) findViewById(R.id.averageAngleNumber);
+	    TextView averageAngle = (TextView) view.findViewById(R.id.averageAngleNumber);
 		repNumber.setText(averageAngleTotal/rows);
 		
 		//update average delta angle
-	    TextView deltaAngle = (TextView) findViewById(R.id.deltaAngleNumber);
+	    TextView deltaAngle = (TextView) view.findViewById(R.id.deltaAngleNumber);
 		if ((averageAngleTotal/rows)>170){
 			repNumber.setText("+" + ((averageAngleTotal/rows)-170));
 		}else if ((averageAngleTotal/rows)<170){
@@ -108,12 +110,13 @@ public class SummaryView extends Fragment {
 		}
 		
 		//update quality counts
-		TextView good = (TextView) findViewById(R.id.goodNumber);
-		TextView ok = (TextView) findViewById(R.id.okNumber);
-		TextView ni = (TextView) findViewById(R.id.needsImprovementNumber);
+		TextView good = (TextView) view.findViewById(R.id.goodNumber);
+		TextView ok = (TextView) view.findViewById(R.id.okNumber);
+		TextView ni = (TextView) view.findViewById(R.id.needsImprovementNumber);
 		good.setText(goodCount);
 		ok.setText(okCount);
 		ni.setText(needsImprovementCount);
+		sum.close();
 	}
 
 }

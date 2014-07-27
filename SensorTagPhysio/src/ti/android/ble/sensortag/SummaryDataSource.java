@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+@SuppressWarnings("unused")
 public class SummaryDataSource {
 	
 	  // Database fields
@@ -43,12 +44,12 @@ public class SummaryDataSource {
 		  database.insert(DatabaseHelper.TABLE_NAME, null, values);	  
 	  }
 	  
-	  public Cursor readEntry(){
-		  String [] allColumns = new String[]{DatabaseHelper.EXERCISE_TYPE_COLUMN, DatabaseHelper.REPS_COLUMN, DatabaseHelper.MIN_ANGLE_COLUMN, DatabaseHelper.MAX_ANGLE_COLUMN, DatabaseHelper.AVERAGE_ANGLE_COLUMN, DatabaseHelper.DELTA_ANGLE_COLUMN, DatabaseHelper.QUALITY_COLUMN, DatabaseHelper.DATE_COLUMN};
-		  Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, allColumns, null, null, null, null, null);
-		  cursor.moveToFirst();
-		  return cursor;
-	  }
+//	  public Cursor readEntry(){
+//		  String [] allColumns = new String[]{DatabaseHelper.EXERCISE_TYPE_COLUMN, DatabaseHelper.REPS_COLUMN, DatabaseHelper.MIN_ANGLE_COLUMN, DatabaseHelper.MAX_ANGLE_COLUMN, DatabaseHelper.AVERAGE_ANGLE_COLUMN, DatabaseHelper.DELTA_ANGLE_COLUMN, DatabaseHelper.QUALITY_COLUMN, DatabaseHelper.DATE_COLUMN};
+//		  Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, allColumns, null, null, null, null, null);
+//		  cursor.moveToFirst();
+//		  return cursor;
+//	  }
 	  
 	  public Cursor getAllExerciseRecords(){ 
 		  Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, null, null, null, null, null, null);
