@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class SummaryView extends Fragment {
 	
@@ -30,5 +31,45 @@ public class SummaryView extends Fragment {
 
         return view;
   }
+    
+    public void updateImportantInfo(){
+    	sqlcon.open();
+  	  	Cursor c = sqlcon.readEntry();
+  	  	int rows = c.getCount();
+  	  	c.moveToFirst();
+  	  	
+  	  	//initialize variables that hold important data
+  	  	int goodCount = 0, okCount = 0, needsImprovementCount = 0, repsPerExerciseTotal = 0, averageAngleTotal = 0;
+  	  	
+  	  	//loop through db, updating counters
+        
+        //update average reps per exercise
+        TextView repNumber = (TextView) findViewById(R.id.repNumber);
+    	repNumber.setText(repsPerExerciseTotal/rows);
+    	
+    	//update average average angle
+        TextView averageAngle = (TextView) findViewById(R.id.averageAngleNumber);
+    	repNumber.setText(averageAngleTotal/rows);
+    	
+    	//update average delta angle
+        TextView deltaAngle = (TextView) findViewById(R.id.deltaAngleNumber);
+    	if ((averageAngleTotal/rows)>170){
+    		repNumber.setText("+" + ((averageAngleTotal/rows)-170));
+    	}else if ((averageAngleTotal/rows)<170){
+    		repNumber.setText("-" + (170-(averageAngleTotal/rows)));
+    	}else{
+    		repNumber.setText("0");
+    	}
+    	
+    	//update quality counts
+    	TextView good = (TextView) findViewById(R.id.goodNumber);
+    	TextView ok = (TextView) findViewById(R.id.okNumber);
+    	TextView ni = (TextView) findViewById(R.id.needsImprovementNumber);
+    	good.setText(goodCount);
+    	ok.setText(okCount);
+    	ni.setText(needsImprovementCount);
+    }
+
+    
 
 }
