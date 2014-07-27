@@ -9,6 +9,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ti.android.ble.sensortag.SummaryActivity" 
     android:orientation="vertical">
+    
+    <LinearLayout
+    android:id="@+id/row0"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+	    <TextView
+	        android:id="@+id/summaryTitle"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        android:text="SUMMARY" 
+	        android:layout_gravity="left"/>
+	
+	</LinearLayout>
 
     <LinearLayout
     android:id="@+id/row1"
@@ -19,7 +37,7 @@
 	    <TextView
 	        android:id="@+id/repsPerExercise"
 	        android:layout_width="0dp"
-	        android:layout_weight="1"
+	        android:layout_weight="2"
 	        android:layout_height="wrap_content"
 	        android:text="Average reps/exercise: " 
 	        android:layout_gravity="left"/>
@@ -41,9 +59,9 @@
 	    <TextView
 	        android:id="@+id/good"
 	        android:layout_width="0dp"
-	        android:layout_weight="1"
+	        android:layout_weight="2"
 	        android:layout_height="wrap_content"
-	        android:text="Good: " 
+	        android:text="# of GOOD: " 
 	        android:layout_gravity="left"/>
 	
 	    <TextView
@@ -62,9 +80,9 @@
 	    <TextView
 	        android:id="@+id/ok"
 	        android:layout_width="0dp"
-	        android:layout_weight="1"
+	        android:layout_weight="2"
 	        android:layout_height="wrap_content"
-	        android:text="Ok: " 
+	        android:text="# of OK: " 
 	        android:layout_gravity="left"/>
 	
 	    <TextView
@@ -83,9 +101,9 @@
 	    <TextView
 	        android:id="@+id/needsImprovement"
 	        android:layout_width="0dp"
-	        android:layout_weight="1"
+	        android:layout_weight="2"
 	        android:layout_height="wrap_content"
-	        android:text="Needs Improvement: " 
+	        android:text="# of NEEDS_IMPROVEMENT: " 
 	        android:layout_gravity="left"/>
 	    <TextView
 	        android:id="@+id/needsImprovementNumber"
@@ -103,7 +121,7 @@
 	    <TextView
 	        android:id="@+id/averageAngle"
 	        android:layout_width="0dp"
-	        android:layout_weight="1"
+	        android:layout_weight="2"
 	        android:layout_height="wrap_content"
 	        android:text="Average angle: " 
 	        android:layout_gravity="left"/>
@@ -124,9 +142,9 @@
 	    <TextView
 	        android:id="@+id/deltaAngle"
 	        android:layout_width="0dp"
-	        android:layout_weight="1"
+	        android:layout_weight="2"
 	        android:layout_height="wrap_content"
-	        android:text="Difference from ideal: " 
+	        android:text="Avg Difference from ideal: " 
 	        android:layout_gravity="left"/>
 	
 	    <TextView
@@ -138,6 +156,22 @@
 	        android:layout_gravity="right"/>
 	</LinearLayout>
 	
+	<LinearLayout
+    android:id="@+id/row7"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+	    <TextView
+	        android:id="@+id/tableTitle"
+	        android:layout_width="0dp"
+	        android:layout_weight="5"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        android:text="DAILY RECORD " 
+	        android:layout_gravity="left"/>
+	</LinearLayout>
+	
 	<ScrollView
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content">
@@ -145,7 +179,7 @@
 	            android:id="@+id/tableLayout1"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:padding="5dp">
+	            android:padding="2dp">
 	            
         <TableRow
 	        android:id="@+id/tableRow1"
@@ -165,28 +199,28 @@
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
-            android:text="Avg Deg" />
+            android:text="Min Deg" />
                 
         <TextView
             android:id="@+id/minDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
-            android:text="Min Deg" />
+            android:text="Max Deg" />
         
         <TextView
             android:id="@+id/maxDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
-            android:text="Max Deg" />
+            android:text="Avg Deg" />
         
         <TextView
             android:id="@+id/deltaDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
-            android:text="Delta Deg" />
+            android:text="Delta" />
         
         <TextView
             android:id="@+id/qualityTable"

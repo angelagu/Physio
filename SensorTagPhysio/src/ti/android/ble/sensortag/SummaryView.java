@@ -1,5 +1,7 @@
 package ti.android.ble.sensortag;
 
+import java.util.ArrayList;
+
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,7 +21,6 @@ public class SummaryView extends Fragment {
 	public static SummaryView mInstance = null;
 	
 	public static View view;
-	
 	private TableLayout table_layout;
 	
     @Override
@@ -58,16 +59,17 @@ public class SummaryView extends Fragment {
         	   // inner for loop
         	   for (int j = 0; j < cols; j++) {
         		   
-	        	   if (j != 0 || j != 1) {
+	        	   if (j != 0 && j != 1) {
 	
 		        	    TextView tv = new TextView(this.getActivity());
 		        	    System.out.println("tv " + tv);
 		//        	    tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 		//        	      LayoutParams.WRAP_CONTENT));
-		        	    
+		        	    LayoutParams params = new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f);
 		        	    tv.setGravity(Gravity.CENTER);
 		        	    tv.setTextSize(12);
-		        	    tv.setPadding(0, 5, 0, 5);
+		        	    tv.setWidth(0);
+		        	    tv.setLayoutParams(params);
 		        	    tv.setText(c.getString(j));
 		
 		        	    row.addView(tv);
@@ -91,7 +93,6 @@ public class SummaryView extends Fragment {
 			SummaryDataSource sum = new SummaryDataSource(this.getActivity());
 			sum.open();
 		  	Cursor c = sum.getAllExerciseRecords();
-		  	int rows = c.getCount();
 		  	
 	    //update average reps per exercise
 	    TextView repNumber = (TextView) view.findViewById(R.id.repNumber);
@@ -105,13 +106,11 @@ public class SummaryView extends Fragment {
 		
 		//update average delta angle
 	    TextView deltaAngle = (TextView) view.findViewById(R.id.deltaAngleNumber);
-		if ((sum.getAverageAngle()/rows)>170){
-			deltaAngle.setText("+" + String.valueOf(((sum.getAverageAngle())-170)));
-		}else if ((sum.getAverageAngle())<170){
-			deltaAngle.setText("-" + String.valueOf((170-(sum.getAverageAngle()))));
-		}else{
-			deltaAngle.setText(String.valueOf(0));
-		}
+	    if (sum.getAverageAngle() != 0) {
+	    	deltaAngle.setText(String.valueOf(sum.getAverageAngle()-170));
+	    } else {
+	    	deltaAngle.setText(String.valueOf(0));
+	    }
 		
 		//update quality counts
 		TextView good = (TextView) view.findViewById(R.id.goodNumber);

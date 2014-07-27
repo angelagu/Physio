@@ -226,7 +226,7 @@ public class DeviceActivity extends ViewPagerActivity {
 		  record.setAverageAngle(averageDegrees);
 		  record.setReps(numReps);
 		  record.setMinAngle(minDegrees);
-		  record.setDeltaAngle(170 - averageDegrees);
+		  record.setDeltaAngle(averageDegrees - 170);
 		  record.setQuality("GOOD");
 		  record.setCreatedDate();
 		  
