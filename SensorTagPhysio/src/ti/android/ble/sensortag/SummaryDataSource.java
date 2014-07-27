@@ -61,8 +61,8 @@ public class SummaryDataSource {
 		  return cursor;
 	  }
 	  
-	  public int getRepTotal(){
-		  Cursor cursor = database.rawQuery("SELECT SUM(2) FROM exercise_records", null);
+	  public int getRep(){
+		  Cursor cursor = database.rawQuery("SELECT AVG(number_reps) FROM exercise_records", null);
 		  int reps = 0;
 		  while(cursor.moveToNext()) {
 		      reps = cursor.getInt(0); 
@@ -70,8 +70,8 @@ public class SummaryDataSource {
 		  return reps;
 	  }
 	  
-	  public int getAverageAngleTotal(){
-		  Cursor cursor = database.rawQuery("SELECT SUM(5) FROM exercise_records", null);
+	  public int getAverageAngle(){
+		  Cursor cursor = database.rawQuery("SELECT AVG(average_angle) FROM exercise_records", null);
 		  int avgAngle = 0;
 		  while(cursor.moveToNext()) {
 			  avgAngle = cursor.getInt(0); 
@@ -80,7 +80,7 @@ public class SummaryDataSource {
 	  }
 	  
 	  public int getGoodCount(){
-		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM exercise_records WHERE quality='GOOD'", null);
+		  Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM exercise_records WHERE quality='GOOD'", null);
 		  int count = 0;
 		  while(cursor.moveToNext()) {
 			  count = cursor.getInt(0); 
@@ -89,7 +89,7 @@ public class SummaryDataSource {
 	  }
 	  
 	  public int getOkCount(){
-		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM exercise_records WHERE quality='OK'", null);
+		  Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM exercise_records WHERE quality='OK'", null);
 		  int count = 0;
 		  while(cursor.moveToNext()) {
 			  count = cursor.getInt(0); 
@@ -98,7 +98,7 @@ public class SummaryDataSource {
 	  }
 	  
 	  public int getNeedsImprovementCount(){
-		  Cursor cursor = database.rawQuery("SELECT COUNT(7) FROM exercise_records WHERE quality='NEEDS IMPROVEMENT'", null);
+		  Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM exercise_records WHERE quality='NEEDS IMPROVEMENT'", null);
 		  int count = 0;
 		  while(cursor.moveToNext()) {
 			  count = cursor.getInt(0); 

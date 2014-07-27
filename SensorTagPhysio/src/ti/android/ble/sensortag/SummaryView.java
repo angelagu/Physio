@@ -95,18 +95,20 @@ public class SummaryView extends Fragment {
 		  	
 	    //update average reps per exercise
 	    TextView repNumber = (TextView) view.findViewById(R.id.repNumber);
-		repNumber.setText(String.valueOf(sum.getRepTotal()/rows));
+		repNumber.setText(String.valueOf(sum.getRep()));
 		
 		//update average average angle
 	    TextView averageAngle = (TextView) view.findViewById(R.id.averageAngleNumber);
-	    averageAngle.setText(String.valueOf(sum.getAverageAngleTotal()/rows));
+	    averageAngle.setText(String.valueOf(sum.getAverageAngle()));
+	    System.out.println("average angle: " + sum.getAverageAngle());
+	    System.out.println("average rep: " + sum.getRep());
 		
 		//update average delta angle
 	    TextView deltaAngle = (TextView) view.findViewById(R.id.deltaAngleNumber);
-		if ((sum.getAverageAngleTotal()/rows)>170){
-			deltaAngle.setText("+" + String.valueOf(((sum.getAverageAngleTotal()/rows)-170)));
-		}else if ((sum.getAverageAngleTotal()/rows)<170){
-			deltaAngle.setText("-" + String.valueOf((170-(sum.getAverageAngleTotal()/rows))));
+		if ((sum.getAverageAngle()/rows)>170){
+			deltaAngle.setText("+" + String.valueOf(((sum.getAverageAngle())-170)));
+		}else if ((sum.getAverageAngle())<170){
+			deltaAngle.setText("-" + String.valueOf((170-(sum.getAverageAngle()))));
 		}else{
 			deltaAngle.setText(String.valueOf(0));
 		}

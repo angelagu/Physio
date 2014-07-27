@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String sql = "CREATE TABLE IF NOT EXISTS exercise_records (" +
                                                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " + 
                                                 "exercise_type TEXT, " +
-                                                "number_reps INTEGER, " +
+                                                "number_reps REAL, " +
                                                 "min_angle REAL, " +
                                                 "max_angle REAL, " +
                                                 "average_angle REAL, " +
