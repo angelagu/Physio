@@ -9,22 +9,22 @@
         android:id="@+id/step1"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_alignParentTop="true"
         android:gravity="center"
-        android:text="Step 1: Attach FlexTech to wrist" />
+        android:text="@string/step1" />
 
-    <!-- <ImageView
+    <ImageView
         android:id="@+id/demo_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/FlexTech1" /> -->
+        android:contentDescription="@string/demo_image_desc"
+        android:src="@drawable/FlexTech1" />
 
     <TextView
         android:id="@id/step2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="Step 2: Turn on sensor" />
+        android:text="@string/step2" />
 
     <Button
         android:id="@id/startRecordButton"
