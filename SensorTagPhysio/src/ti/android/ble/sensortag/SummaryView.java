@@ -17,7 +17,6 @@ public class SummaryView extends Fragment {
 	
 	private static final String TAG = "StartScreenView";
 	public static SummaryView mInstance = null;
-	public SummaryDataSource sum = new SummaryDataSource(this.getActivity());
 	
 	public static View view;
 	
@@ -32,11 +31,13 @@ public class SummaryView extends Fragment {
         table_layout = (TableLayout) view.findViewById(R.id.tableLayout1);
         
         buildTable();
+        updateImportantInfo();
 
         return view;
   }
     
     public void buildTable() {
+    	SummaryDataSource sum = new SummaryDataSource(this.getActivity());
         sum.open();
         
         Cursor c = sum.getAllExerciseRecords();
@@ -76,11 +77,13 @@ public class SummaryView extends Fragment {
         	             LayoutParams.WRAP_CONTENT));
         	   c.moveToNext();
         	  }
+        c.close();
         sum.close();
     }
     
 
 	public void updateImportantInfo(){
+			SummaryDataSource sum = new SummaryDataSource(this.getActivity());
 			sum.open();
 		  	Cursor c = sum.getAllExerciseRecords();
 		  	int rows = c.getCount();
@@ -94,29 +97,30 @@ public class SummaryView extends Fragment {
 		  	
 	    //update average reps per exercise
 	    TextView repNumber = (TextView) view.findViewById(R.id.repNumber);
-		repNumber.setText(repsPerExerciseTotal/rows);
+		repNumber.setText(String.valueOf(repsPerExerciseTotal/rows));
 		
 		//update average average angle
 	    TextView averageAngle = (TextView) view.findViewById(R.id.averageAngleNumber);
-		repNumber.setText(averageAngleTotal/rows);
+	    averageAngle.setText(String.valueOf(averageAngleTotal/rows));
 		
 		//update average delta angle
 	    TextView deltaAngle = (TextView) view.findViewById(R.id.deltaAngleNumber);
 		if ((averageAngleTotal/rows)>170){
-			repNumber.setText("+" + ((averageAngleTotal/rows)-170));
+			deltaAngle.setText("+" + String.valueOf(((averageAngleTotal/rows)-170)));
 		}else if ((averageAngleTotal/rows)<170){
-			repNumber.setText("-" + (170-(averageAngleTotal/rows)));
+			deltaAngle.setText("-" + String.valueOf((170-(averageAngleTotal/rows))));
 		}else{
-			repNumber.setText("0");
+			deltaAngle.setText(String.valueOf(0));
 		}
 		
 		//update quality counts
 		TextView good = (TextView) view.findViewById(R.id.goodNumber);
 		TextView ok = (TextView) view.findViewById(R.id.okNumber);
 		TextView ni = (TextView) view.findViewById(R.id.needsImprovementNumber);
-		good.setText(goodCount);
-		ok.setText(okCount);
-		ni.setText(needsImprovementCount);
+		good.setText(String.valueOf(goodCount));
+		ok.setText(String.valueOf(okCount));
+		ni.setText(String.valueOf(needsImprovementCount));
+		c.close();
 		sum.close();
 	}
 
