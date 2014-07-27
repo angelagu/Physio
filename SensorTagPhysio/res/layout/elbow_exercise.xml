@@ -8,6 +8,7 @@
         android:id="@+id/start_position"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:textSize="15sp"
         android:gravity="center"
         android:text="@string/startposition" />
     
@@ -23,6 +24,7 @@
         android:id="@+id/end_position"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:textSize="15sp"
         android:gravity="center"
         android:text="@string/endposition" />
 
