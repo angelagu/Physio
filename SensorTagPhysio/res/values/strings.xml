@@ -92,10 +92,10 @@
     <string name="endposition">End Position: </string>
     <string name="congrats">Congratulations, you finished an exercise.</string>
     <string name="okay_label">You did OKAY</string>
-    <string name="good_label">You did GOOD</string>
+    <string name="good_label">Good Job</string>
     <string name="bad_label">You NEED IMPROVEMENT</string>
     <string name="okay_message">Almost there! Just a short way to your goal.</string>
-    <string name="good_message">Good Job! You are on or close to your goal.</string>
+    <string name="good_message">Great, you are at or close to your goal.</string>
     <string name="bad_message">Try to improve your angle next time!</string>
     <string name="average_message">Your average angle of motion was: </string>
     
