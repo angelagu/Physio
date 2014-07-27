@@ -87,28 +87,21 @@ public class SummaryView extends Fragment {
 			sum.open();
 		  	Cursor c = sum.getAllExerciseRecords();
 		  	int rows = c.getCount();
-		  	c.moveToFirst();
-		  	
-		  	//initialize variables that hold important data
-		  	int goodCount = 0, okCount = 0, needsImprovementCount = 0, repsPerExerciseTotal = 0, averageAngleTotal = 0;
-		  	
-		  	//loop through db, updating counters
-		  	
 		  	
 	    //update average reps per exercise
 	    TextView repNumber = (TextView) view.findViewById(R.id.repNumber);
-		repNumber.setText(String.valueOf(repsPerExerciseTotal/rows));
+		repNumber.setText(String.valueOf(sum.getRepTotal()/rows));
 		
 		//update average average angle
 	    TextView averageAngle = (TextView) view.findViewById(R.id.averageAngleNumber);
-	    averageAngle.setText(String.valueOf(averageAngleTotal/rows));
+	    averageAngle.setText(String.valueOf(sum.getAverageAngleTotal()/rows));
 		
 		//update average delta angle
 	    TextView deltaAngle = (TextView) view.findViewById(R.id.deltaAngleNumber);
-		if ((averageAngleTotal/rows)>170){
-			deltaAngle.setText("+" + String.valueOf(((averageAngleTotal/rows)-170)));
-		}else if ((averageAngleTotal/rows)<170){
-			deltaAngle.setText("-" + String.valueOf((170-(averageAngleTotal/rows))));
+		if ((sum.getAverageAngleTotal()/rows)>170){
+			deltaAngle.setText("+" + String.valueOf(((sum.getAverageAngleTotal()/rows)-170)));
+		}else if ((sum.getAverageAngleTotal()/rows)<170){
+			deltaAngle.setText("-" + String.valueOf((170-(sum.getAverageAngleTotal()/rows))));
 		}else{
 			deltaAngle.setText(String.valueOf(0));
 		}
@@ -117,9 +110,9 @@ public class SummaryView extends Fragment {
 		TextView good = (TextView) view.findViewById(R.id.goodNumber);
 		TextView ok = (TextView) view.findViewById(R.id.okNumber);
 		TextView ni = (TextView) view.findViewById(R.id.needsImprovementNumber);
-		good.setText(String.valueOf(goodCount));
-		ok.setText(String.valueOf(okCount));
-		ni.setText(String.valueOf(needsImprovementCount));
+		good.setText(String.valueOf(sum.getGoodCount()));
+		ok.setText(String.valueOf(sum.getOkCount()));
+		ni.setText(String.valueOf(sum.getNeedsImprovementCount()));
 		c.close();
 		sum.close();
 	}
