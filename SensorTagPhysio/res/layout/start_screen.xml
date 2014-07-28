@@ -203,6 +203,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:visibility="gone"
+        android:onClick="repeatExercise"
         android:text="@string/repeat_exercise"/> 
         
     <Button 

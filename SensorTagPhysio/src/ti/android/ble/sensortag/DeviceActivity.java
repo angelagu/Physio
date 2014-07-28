@@ -1,4 +1,4 @@
-/**************************************************************************************************
+﻿/**************************************************************************************************
   Filename:       DeviceActivity.java
   Revised:        $Date: 2013-09-05 07:58:48 +0200 (to, 05 sep 2013) $
   Revision:       $Revision: 27616 $
@@ -325,6 +325,14 @@ public class DeviceActivity extends ViewPagerActivity {
 	    intent.putExtra(DeviceActivity.EXTRA_DEVICE, mBluetoothDevice);
 	    startActivityForResult(intent, REQ_DEVICE_ACT);
 	}
+
+  public void repeatExercise(View view) {
+
+		Intent intent = new Intent(this, DeviceActivity.class);
+	    intent.putExtra(DeviceActivity.EXTRA_DEVICE, mBluetoothDevice);
+	    startActivityForResult(intent, 1);
+
+  }
   
   private static IntentFilter makeGattUpdateIntentFilter() {
   	final IntentFilter fi = new IntentFilter();
