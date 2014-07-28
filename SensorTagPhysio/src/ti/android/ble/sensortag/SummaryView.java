@@ -65,13 +65,18 @@ public class SummaryView extends Fragment {
 		        	    System.out.println("tv " + tv);
 		//        	    tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 		//        	      LayoutParams.WRAP_CONTENT));
-		        	    LayoutParams params = new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f);
+		        	    LayoutParams params = new TableRow.LayoutParams(0, LayoutParams.MATCH_PARENT, 1f);
+		        	    if (j == 7 || j == 8) {
+		        	    	params = new TableRow.LayoutParams(0, LayoutParams.MATCH_PARENT, 2f);
+		        	    }
 		        	    tv.setGravity(Gravity.CENTER);
 		        	    tv.setTextSize(12);
 		        	    tv.setWidth(0);
 		        	    tv.setLayoutParams(params);
 		        	    tv.setText(c.getString(j));
-		
+		        	    tv.setBackground(getResources().getDrawable(R.drawable.cell_shape));
+		        	    
+		        	    
 		        	    row.addView(tv);
 	        	   }
 

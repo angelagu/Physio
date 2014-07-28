@@ -22,14 +22,6 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/demo_image_desc"
         android:src="@drawable/elbow_instructions_1" />
-
-    <TextView
-        android:id="@+id/step2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="@string/step2" />
     
     <TextView
         android:id="@+id/tw_directory"
@@ -218,13 +210,6 @@
     
 	
     <!-- Button to Start/Stop Recording -->
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="recordRangeOfMotion"
-        android:text="@string/start_recording"
-        android:textSize="20sp" />
 
     <!-- Degrees -->
     <TextView
@@ -250,5 +235,21 @@
 	    android:text="@string/num_reps"
 	    android:textAppearance="?android:attr/textAppearanceLarge"
 	    android:visibility="gone" />
+
+	<TextView
+	    android:id="@+id/step2"
+	    android:layout_width="match_parent"
+	    android:layout_height="50dp"
+	    android:gravity="center"
+	    android:text="@string/step2"
+	    android:textSize="20sp" />
+
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:onClick="recordRangeOfMotion"
+	    android:text="@string/start_recording"
+	    android:textSize="20sp" />
 
 </LinearLayout>

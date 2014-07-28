@@ -87,7 +87,7 @@
     <string name="title_activity_choose_exercise">ChooseExercise</string>
 
     <string name="step1">Step 1: Attach FlexTech to wrist</string>
-    <string name="step2">Step 2: Turn on sensor</string>
+    <string name="step2">Step 2: Get into start position</string>
     <string name="startposition">Start Position: </string>
     <string name="endposition">End Position: </string>
     <string name="congrats">Congratulations, you finished an exercise.</string>

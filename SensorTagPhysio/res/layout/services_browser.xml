@@ -17,7 +17,7 @@
                 style="@style/ServiceHeaderItem"
                 android:text="@string/keys" />
         </TableRow>
-
+        
         <TableRow
             android:id="@+id/keyPanel"
             style="@style/ServiceRow" >

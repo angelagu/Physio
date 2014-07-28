@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Application;
+import android.widget.Toast;
 import ti.android.util.Point3D;
 
 
@@ -137,9 +138,16 @@ public class RangeOfMotion extends Application {
 		if (array.size() == 0) {
 			return new Point3D(0, 0, 0);
 		}
-		Point3D p1 = array.get(0);
-		Point3D p2 = array.get(1);
-		Point3D p3 = array.get(2);
+		Point3D p1 = new Point3D(0,0,0);
+		Point3D p2 = new Point3D(0,0,0);
+		Point3D p3 = new Point3D(0,0,0);
+		try {
+			p1 = array.get(0);
+			p2 = array.get(1);
+			p3 = array.get(2);
+		} catch (Exception e) {
+		    Toast.makeText(this, "Recording time too short. Please record for longer than 3 seconds.", Toast.LENGTH_LONG).show();
+		}
 		
 		return new Point3D((p1.x + p2.x + p3.x) / 3, (p1.y + p2.y + p3.y) / 3, (p1.z + p2.z + p3.z) / 3);
 	}

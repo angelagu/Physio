@@ -53,7 +53,7 @@ public class SummaryDataSource {
 //	  }
 	  
 	  public Cursor getAllExerciseRecords(){ 
-		  Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, null, null, null, null, null, null);
+		  Cursor cursor = database.rawQuery("SELECT * FROM exercise_records order by created_at desc", null);
 
 		  if (cursor != null) {
 			   cursor.moveToFirst();

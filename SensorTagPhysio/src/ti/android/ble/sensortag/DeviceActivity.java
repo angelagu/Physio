@@ -250,10 +250,19 @@ public class DeviceActivity extends ViewPagerActivity {
 		  ((RangeOfMotion)getApplication()).stopRecording();
 		  
 		  HashMap<String, Integer> result = ((RangeOfMotion)getApplication()).calculateDegreeOfRotation();
-		  double averageDegrees = result.get("averageDegree");
-		  double maxDegrees = result.get("maxDegree");
-		  double minDegrees = result.get("minDegree");
-		  int numReps = result.get("numReps");
+		  double averageDegrees = 0.0;
+		  double maxDegrees = 0.0;
+		  double minDegrees = 0.0;
+		  int numReps = 0;
+		  
+		  try {
+		  	  averageDegrees = result.get("averageDegree");
+			  maxDegrees = result.get("maxDegree");
+			  minDegrees = result.get("minDegree");
+			  numReps = result.get("numReps");
+		  } catch (Exception e) {
+			  Toast.makeText(this, "Please wait until sensor starts displaying values before recording.", Toast.LENGTH_LONG).show();
+		  }
 		  
 		  startPositionText.setVisibility(8);
 		  endPositionText.setVisibility(8);
@@ -290,7 +299,7 @@ public class DeviceActivity extends ViewPagerActivity {
 		  maxMessage.setVisibility(0);
 		  repsMessage.setText("You did " + numReps + " repetitions");
 		  
-		  repeat.setVisibility(0);
+		  //repeat.setVisibility(0);
 		  newExercise.setVisibility(0);
 		  
 		  //avgDegreeText.setText("Your average range of motion was " + averageDegrees + " degrees");

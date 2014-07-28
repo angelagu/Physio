@@ -35,6 +35,7 @@
     android:orientation="horizontal" >
 
 	    <TextView
+	        android:background="@drawable/cell_shape"
 	        android:id="@+id/repsPerExercise"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
@@ -43,6 +44,8 @@
 	        android:layout_gravity="left"/>
 	
 	    <TextView
+	        android:background="@drawable/cell_shape"
+	        android:paddingLeft="20dp"
 	        android:id="@+id/repNumber"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -57,6 +60,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 	    <TextView
+	        android:background="@drawable/cell_shape"
 	        android:id="@+id/good"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
@@ -65,6 +69,8 @@
 	        android:layout_gravity="left"/>
 	
 	    <TextView
+	        android:background="@drawable/cell_shape"
+	        android:paddingLeft="20dp"
 	        android:id="@+id/goodNumber"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -78,6 +84,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 	    <TextView
+	        android:background="@drawable/cell_shape"
 	        android:id="@+id/ok"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
@@ -86,6 +93,8 @@
 	        android:layout_gravity="left"/>
 	
 	    <TextView
+	        android:background="@drawable/cell_shape"
+	        android:paddingLeft="20dp"
 	        android:id="@+id/okNumber"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -99,6 +108,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 	    <TextView
+	        android:background="@drawable/cell_shape"
 	        android:id="@+id/needsImprovement"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
@@ -106,6 +116,8 @@
 	        android:text="# of NEEDS_IMPROVEMENT: " 
 	        android:layout_gravity="left"/>
 	    <TextView
+	        android:background="@drawable/cell_shape"
+	        android:paddingLeft="20dp"
 	        android:id="@+id/needsImprovementNumber"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -119,6 +131,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 	    <TextView
+	        android:background="@drawable/cell_shape"
 	        android:id="@+id/averageAngle"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
@@ -127,6 +140,8 @@
 	        android:layout_gravity="left"/>
 	
 	    <TextView
+	        android:background="@drawable/cell_shape"
+	        android:paddingLeft="20dp"
 	        android:id="@+id/averageAngleNumber"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -140,6 +155,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 	    <TextView
+	        android:background="@drawable/cell_shape"
 	        android:id="@+id/deltaAngle"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
@@ -148,6 +164,8 @@
 	        android:layout_gravity="left"/>
 	
 	    <TextView
+	        android:background="@drawable/cell_shape"
+	        android:paddingLeft="20dp"
 	        android:id="@+id/deltaAngleNumber"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -187,14 +205,18 @@
 	        android:layout_height="wrap_content" >
  
         <TextView
+            android:background="@drawable/cell_shape"
+            android:gravity="center"
             android:id="@+id/numRepsTable"
-            android:text="Reps"
+            android:text="Rep"
             android:layout_width="0dp"
 	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
+	        android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceSmall" />
  
         <TextView
+            android:background="@drawable/cell_shape"
+            android:gravity="center"
             android:id="@+id/avgDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -202,6 +224,8 @@
             android:text="Min Deg" />
                 
         <TextView
+            android:background="@drawable/cell_shape"
+            android:gravity="center"
             android:id="@+id/minDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -209,6 +233,8 @@
             android:text="Max Deg" />
         
         <TextView
+            android:background="@drawable/cell_shape"
+            android:gravity="center"
             android:id="@+id/maxDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
@@ -216,24 +242,30 @@
             android:text="Avg Deg" />
         
         <TextView
+            android:background="@drawable/cell_shape"
+            android:gravity="center"
             android:id="@+id/deltaDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:layout_height="wrap_content"
-            android:text="Delta" />
+            android:text="Diff" />
         
         <TextView
+            android:background="@drawable/cell_shape"
+            android:gravity="center"
             android:id="@+id/qualityTable"
             android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:layout_height="match_parent"
             android:text="Quality" />
         
         <TextView
+            android:background="@drawable/cell_shape"
+            android:gravity="center"
             android:id="@+id/dateTable"
             android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:layout_height="match_parent"
 			android:text="Date" />
     </TableRow>
 	        </TableLayout>
