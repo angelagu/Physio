@@ -148,6 +148,24 @@
     	android:visibility="gone"
         android:text="@string/average_message"/>
     
+    <TextView
+        android:id="@+id/max_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="15sp"
+        android:visibility="gone"
+        android:text="Your maximum angle of motion was: "/>
+    
+    <TextView
+        android:id="@+id/reps_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:text="You did 5 repetitions" />
+        
     <TextView 
         android:id="@+id/bad_message"
         android:layout_width="wrap_content"
@@ -163,6 +181,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textSize="15sp"
         android:layout_marginTop="20dp"
         android:visibility="gone"
         android:text="@string/okay_message"/>
@@ -172,6 +191,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textSize="15sp"
         android:layout_marginTop="20dp"
         android:visibility="gone"
         android:text="@string/good_message"/>
@@ -181,7 +201,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:visibility="gone"
         android:text="@string/repeat_exercise"/> 
         
@@ -192,6 +212,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:visibility="gone"
+        android:onClick="chooseNew"
         android:text="@string/new_exercise"/>
     
 	

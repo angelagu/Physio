@@ -220,6 +220,8 @@ public class DeviceActivity extends ViewPagerActivity {
 	  TextView goodLabel = (TextView) findViewById(R.id.good_label);
 	  ImageView good = (ImageView) findViewById(R.id.good);
 	  TextView averageMessage = (TextView) findViewById(R.id.average_message);
+	  TextView maxMessage = (TextView) findViewById(R.id.max_message);
+	  TextView repsMessage = (TextView) findViewById(R.id.reps_message);
 	  TextView okayMessage = (TextView) findViewById(R.id.okay_message);
 	  TextView goodMessage = (TextView) findViewById(R.id.good_message);
 	  TextView badMessage = (TextView) findViewById(R.id.bad_message);
@@ -260,6 +262,8 @@ public class DeviceActivity extends ViewPagerActivity {
 		  
 		  congrats.setVisibility(0);
 		  
+		  ExerciseRecord record = new ExerciseRecord();
+		  
 		  //Rate Quality, set proper display for quality
 		  double ideal_angle = 170;
 		  double score = averageDegrees/ideal_angle;
@@ -267,17 +271,24 @@ public class DeviceActivity extends ViewPagerActivity {
 			  bad.setVisibility(0);
 			  badLabel.setVisibility(0);
 			  badMessage.setVisibility(0);
+			  record.setQuality("NEEDS IMPROVEMENT");
 		  } else if(score < 66.6) {
 			  okay.setVisibility(0);
 			  okayLabel.setVisibility(0);
 			  okayMessage.setVisibility(0);
+			  record.setQuality("OKAY");
 		  }else {
 			  good.setVisibility(0);
 			  goodLabel.setVisibility(0);
 			  goodMessage.setVisibility(0);
+			  record.setQuality("GOOD");
 		  };
 		  
 		  averageMessage.setText("Your average range of motion was " + averageDegrees + " degrees");
+		  averageMessage.setVisibility(0);
+		  maxMessage.setText("Your maximum range of motion was " + maxDegrees + " degrees");
+		  maxMessage.setVisibility(0);
+		  repsMessage.setText("You did " + numReps + " repetitions");
 		  
 		  repeat.setVisibility(0);
 		  newExercise.setVisibility(0);
@@ -287,15 +298,16 @@ public class DeviceActivity extends ViewPagerActivity {
 		  //numRepsText.setText("Your number of repetitions was " + numReps + " reps");
 		  
 		  bButton.setText("Start Recording");
+		  bButton.setVisibility(8);
 		  
-		  ExerciseRecord record = new ExerciseRecord();
+		  
 		  record.setExerciseType("ELBOW_ROTATION");
 		  record.setMaxAngle(maxDegrees);
 		  record.setAverageAngle(averageDegrees);
 		  record.setReps(numReps);
 		  record.setMinAngle(minDegrees);
 		  record.setDeltaAngle(averageDegrees - 170);
-		  record.setQuality("GOOD");
+		  
 		  record.setCreatedDate();
 		  
 		  SummaryDataSource dataSource = new SummaryDataSource(this);
@@ -304,6 +316,15 @@ public class DeviceActivity extends ViewPagerActivity {
 		  dataSource.close();
 	  }
   }
+  
+  //private Intent mDeviceIntent;
+  private static final int REQ_DEVICE_ACT = 1;
+  
+  public void chooseNew(View view){
+		Intent intent = new Intent(this, ChooseExercise.class);
+	    intent.putExtra(DeviceActivity.EXTRA_DEVICE, mBluetoothDevice);
+	    startActivityForResult(intent, REQ_DEVICE_ACT);
+	}
   
   private static IntentFilter makeGattUpdateIntentFilter() {
   	final IntentFilter fi = new IntentFilter();

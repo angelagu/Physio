@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-   <!--  <TextView 
+   <!-- <TextView 
         android:id="@+id/congrats"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         android:src="@drawable/okay"
         android:contentDescription="@string/demo_image_desc"/>
     
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         android:text="@string/okay_label"/> 
     
     <ImageView 
@@ -73,8 +73,24 @@
         android:layout_gravity="center"
         android:textSize="15sp"
         android:layout_marginTop="20dp"
-    	android:visibility="gone"
+    	android:visibility="visible"
         android:text="@string/average_message"/>
+    
+    <TextView
+        android:id="@+id/max_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="15sp"
+        android:text="Your maximum angle of motion was: "/>
+    
+    <TextView
+        android:id="@+id/reps_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_gravity="center"
+        android:text="You did 5 repetitions" />
     
    <TextView 
         android:id="@+id/bad_message"
@@ -91,8 +107,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textSize="15sp"
         android:layout_marginTop="20dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:text="@string/okay_message"/>
         
       <TextView 
@@ -100,6 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textSize="15sp"
         android:layout_marginTop="20dp"
         android:visibility="gone"
         android:text="@string/good_message"/>
@@ -109,8 +127,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:visibility="gone"
+        android:layout_marginTop="25dp"
+        android:visibility="visible"
         android:text="@string/repeat_exercise"/> 
         
     <Button 
@@ -119,6 +137,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:text="@string/new_exercise"/> -->
 </LinearLayout>
