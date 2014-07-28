@@ -200,13 +200,32 @@ public class DeviceActivity extends ViewPagerActivity {
 	  TextView maxDegreeText = (TextView) findViewById(R.id.maxDegrees);
 	  TextView numRepsText = (TextView) findViewById(R.id.numReps);
 	  
+	  //Device Instructions
+	  TextView step1 = (TextView) findViewById(R.id.step1);
+	  TextView step2 = (TextView) findViewById(R.id.step2);
+	  ImageView demoImage = (ImageView) findViewById(R.id.demo_image);
+	  
+	  //Exercise Instructions
 	  TextView startPositionText = (TextView) findViewById(R.id.start_position);
 	  TextView endPositionText = (TextView) findViewById(R.id.end_position);
 	  ImageView startPositionImage = (ImageView) findViewById(R.id.start_image);
 	  ImageView endPositionImage = (ImageView) findViewById(R.id.end_image);
-	  TextView step1 = (TextView) findViewById(R.id.step1);
-	  TextView step2 = (TextView) findViewById(R.id.step2);
-	  ImageView demoImage = (ImageView) findViewById(R.id.demo_image);
+	  
+	  //Summary after recording
+	  TextView congrats = (TextView) findViewById(R.id.congrats);
+	  TextView okayLabel = (TextView) findViewById(R.id.okay_label);
+	  ImageView okay = (ImageView) findViewById(R.id.okay);
+	  TextView badLabel = (TextView) findViewById(R.id.bad_label);
+	  ImageView bad = (ImageView) findViewById(R.id.bad);
+	  TextView goodLabel = (TextView) findViewById(R.id.good_label);
+	  ImageView good = (ImageView) findViewById(R.id.good);
+	  TextView averageMessage = (TextView) findViewById(R.id.average_message);
+	  TextView okayMessage = (TextView) findViewById(R.id.okay_message);
+	  TextView goodMessage = (TextView) findViewById(R.id.good_message);
+	  TextView badMessage = (TextView) findViewById(R.id.bad_message);
+	  Button repeat = (Button) findViewById(R.id.repeat_exercise);
+	  Button newExercise = (Button) findViewById(R.id.new_exercise);
+	  
 	  
 	  if (!isRecording) {
 		  ((RangeOfMotion)getApplication()).startRecording();
@@ -234,9 +253,38 @@ public class DeviceActivity extends ViewPagerActivity {
 		  double minDegrees = result.get("minDegree");
 		  int numReps = result.get("numReps");
 		  
-		  avgDegreeText.setText("Your average range of motion was " + averageDegrees + " degrees");
-		  maxDegreeText.setText("Your max range of motion was " + maxDegrees + " degrees");
-		  numRepsText.setText("Your number of repetitions was " + numReps + " reps");
+		  startPositionText.setVisibility(8);
+		  endPositionText.setVisibility(8);
+		  startPositionImage.setVisibility(8);
+		  endPositionImage.setVisibility(8);
+		  
+		  congrats.setVisibility(0);
+		  
+		  //Rate Quality, set proper display for quality
+		  double ideal_angle = 170;
+		  double score = averageDegrees/ideal_angle;
+		  if (score < 33.3) {
+			  bad.setVisibility(0);
+			  badLabel.setVisibility(0);
+			  badMessage.setVisibility(0);
+		  } else if(score < 66.6) {
+			  okay.setVisibility(0);
+			  okayLabel.setVisibility(0);
+			  okayMessage.setVisibility(0);
+		  }else {
+			  good.setVisibility(0);
+			  goodLabel.setVisibility(0);
+			  goodMessage.setVisibility(0);
+		  };
+		  
+		  averageMessage.setText("Your average range of motion was " + averageDegrees + " degrees");
+		  
+		  repeat.setVisibility(0);
+		  newExercise.setVisibility(0);
+		  
+		  //avgDegreeText.setText("Your average range of motion was " + averageDegrees + " degrees");
+		  //maxDegreeText.setText("Your max range of motion was " + maxDegrees + " degrees");
+		  //numRepsText.setText("Your number of repetitions was " + numReps + " reps");
 		  
 		  bButton.setText("Start Recording");
 		  

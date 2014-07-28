@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
+  <!--   <TextView
         android:id="@+id/start_position"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -42,6 +42,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
-        android:text="@string/stop_recording"/>
+        android:text="@string/stop_recording"/> -->
 
 </LinearLayout>
