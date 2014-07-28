@@ -275,13 +275,13 @@ public class DeviceActivity extends ViewPagerActivity {
 		  
 		  //Rate Quality, set proper display for quality
 		  double ideal_angle = 170;
-		  double score = averageDegrees/ideal_angle;
-		  if (score < 33.3) {
+		  double score = averageDegrees/ideal_angle * 100;
+		  if (score < 30.0) {
 			  bad.setVisibility(0);
 			  badLabel.setVisibility(0);
 			  badMessage.setVisibility(0);
 			  record.setQuality("NEEDS IMPROVEMENT");
-		  } else if(score < 66.6) {
+		  } else if(score < 60) {
 			  okay.setVisibility(0);
 			  okayLabel.setVisibility(0);
 			  okayMessage.setVisibility(0);
@@ -297,6 +297,7 @@ public class DeviceActivity extends ViewPagerActivity {
 		  averageMessage.setVisibility(0);
 		  maxMessage.setText("Your maximum range of motion was " + maxDegrees + " degrees");
 		  maxMessage.setVisibility(0);
+		  repsMessage.setVisibility(0);
 		  repsMessage.setText("You did " + numReps + " repetitions");
 		  
 		  //repeat.setVisibility(0);

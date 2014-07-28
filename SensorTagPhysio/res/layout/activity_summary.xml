@@ -23,7 +23,7 @@
 	        android:layout_height="wrap_content"
 	        android:paddingTop="10dp"
 	        android:paddingBottom="10dp"
-	        android:text="SUMMARY" 
+	        android:text="OVERALL SUMMARY" 
 	        android:layout_gravity="left"/>
 	
 	</LinearLayout>
@@ -39,6 +39,7 @@
 	        android:id="@+id/repsPerExercise"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
+	        android:paddingLeft="10dp"
 	        android:layout_height="wrap_content"
 	        android:text="Average reps/exercise: " 
 	        android:layout_gravity="left"/>
@@ -64,6 +65,7 @@
 	        android:id="@+id/good"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
+	        android:paddingLeft="10dp"
 	        android:layout_height="wrap_content"
 	        android:text="# of GOOD: " 
 	        android:layout_gravity="left"/>
@@ -88,6 +90,7 @@
 	        android:id="@+id/ok"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
+	        android:paddingLeft="10dp"
 	        android:layout_height="wrap_content"
 	        android:text="# of OK: " 
 	        android:layout_gravity="left"/>
@@ -112,8 +115,9 @@
 	        android:id="@+id/needsImprovement"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
+	        android:paddingLeft="10dp"
 	        android:layout_height="wrap_content"
-	        android:text="# of NEEDS_IMPROVEMENT: " 
+	        android:text="# of NEEDS IMPROVEMENT: " 
 	        android:layout_gravity="left"/>
 	    <TextView
 	        android:background="@drawable/cell_shape"
@@ -135,6 +139,7 @@
 	        android:id="@+id/averageAngle"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
+	        android:paddingLeft="10dp"
 	        android:layout_height="wrap_content"
 	        android:text="Average angle: " 
 	        android:layout_gravity="left"/>
@@ -159,6 +164,7 @@
 	        android:id="@+id/deltaAngle"
 	        android:layout_width="0dp"
 	        android:layout_weight="2"
+	        android:paddingLeft="10dp"
 	        android:layout_height="wrap_content"
 	        android:text="Avg Difference from ideal: " 
 	        android:layout_gravity="left"/>
@@ -247,7 +253,7 @@
             android:id="@+id/deltaDegreesTable"
             android:layout_width="0dp"
 	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
+	        android:layout_height="match_parent"
             android:text="Diff" />
         
         <TextView
