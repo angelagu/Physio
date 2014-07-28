@@ -29,7 +29,7 @@
         android:name=".RangeOfMotion"
         android:allowBackup="false"
         android:label="@string/flextech"
-        android:theme="@android:style/Theme.Holo.Light" >
+        android:theme="@android:style/Theme.Holo.Light" android:icon="@drawable/ic_launcher">
         <service
             android:name="ti.android.ble.common.BluetoothLeService"
             android:enabled="true" />
